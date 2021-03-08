@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Shopaccjx2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Danhmuc">
+    <Key>
+      <PropertyRef Name="Ma_danhmuc" />
+    </Key>
+    <Property Name="Ma_danhmuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tendanhmuc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ghichu" Type="text" />
+  </EntityType>
+  <EntityType Name="Donhang">
+    <Key>
+      <PropertyRef Name="Ma_donhang" />
+    </Key>
+    <Property Name="Ma_donhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vatpham" Type="nvarchar" MaxLength="50" />
+    <Property Name="soluong" Type="int" />
+    <Property Name="Nhanvat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tongtien" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Id_taikhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="Lichsugiaodich">
+    <Key>
+      <PropertyRef Name="Ma_lichsugiaodich" />
+    </Key>
+    <Property Name="Ma_lichsugiaodich" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Noidunggiaodich" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dongtien" Type="int" />
+    <Property Name="Sodubandau" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Sodusau" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Ma_taikhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="Loaiphai">
+    <Key>
+      <PropertyRef Name="Ma_phai" />
+    </Key>
+    <Property Name="Ma_phai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tenphai" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mota" Type="text" />
+  </EntityType>
+  <EntityType Name="Loaitaikhoan">
+    <Key>
+      <PropertyRef Name="Ma_loaitaikhoan" />
+    </Key>
+    <Property Name="Ma_loaitaikhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Loaitaikhoan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ghichu" Type="text" />
+  </EntityType>
+  <EntityType Name="Nganhang">
+    <Key>
+      <PropertyRef Name="Ma_nganhang" />
+    </Key>
+    <Property Name="Ma_nganhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tennganhang" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ghichu" Type="text" />
+  </EntityType>
+  <EntityType Name="Nhanvat">
+    <Key>
+      <PropertyRef Name="Ma_nhanvat" />
+    </Key>
+    <Property Name="Ma_nhanvat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kieuhinhnhanvat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capchuyensinh" Type="int" />
+    <Property Name="Huongchuyensinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capdo" Type="int" />
+    <Property Name="Giaban" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Anhf3" Type="nvarchar(max)" />
+    <Property Name="Anhthongtin" Type="nvarchar(max)" />
+    <Property Name="Anhchankhi" Type="nvarchar(max)" />
+    <Property Name="Anhnon" Type="nvarchar(max)" />
+    <Property Name="Anhao" Type="nvarchar(max)" />
+    <Property Name="Anhquan" Type="nvarchar(max)" />
+    <Property Name="Anhngoc" Type="nvarchar(max)" />
+    <Property Name="Anhvukhi" Type="nvarchar(max)" />
+    <Property Name="Anhtinvat" Type="nvarchar(max)" />
+    <Property Name="Anhaochoang" Type="nvarchar(max)" />
+    <Property Name="Anhhuychuong" Type="nvarchar(max)" />
+    <Property Name="Anhgiay" Type="nvarchar(max)" />
+    <Property Name="Anhmattich" Type="nvarchar(max)" />
+    <Property Name="taikhoannv" Type="nvarchar" MaxLength="50" />
+    <Property Name="matkhaunv" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ghichu" Type="nvarchar(max)" />
+    <Property Name="trangthai" Type="bit" />
+    <Property Name="Ma_phai" Type="int" />
+    <Property Name="Ma_taikhoan" Type="int" />
+    <Property Name="thoigiantao" Type="date" />
+  </EntityType>
+  <EntityType Name="Phanhoi">
+    <Key>
+      <PropertyRef Name="Ma_phanhoi" />
+    </Key>
+    <Property Name="Ma_phanhoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Noidungphanhoi" Type="nvarchar(max)" />
+    <Property Name="Id_taikhoan" Type="int" />
+    <Property Name="Trangthai" Type="bit" />
+  </EntityType>
+  <EntityType Name="Sodutaikhoan">
+    <Key>
+      <PropertyRef Name="Ma_sdtk" />
+    </Key>
+    <Property Name="Ma_sdtk" Type="int" Nullable="false" />
+    <Property Name="Ma_taikhoan" Type="int" />
+    <Property Name="Sodutaikhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="Taikhoan">
+    <Key>
+      <PropertyRef Name="Ma_taikhoan" />
+    </Key>
+    <Property Name="Ma_taikhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tentaikhoan" Type="nvarchar" MaxLength="50" />
+    <Property Name="Matkhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="Maukhau2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tennguoidung" Type="nvarchar" MaxLength="100" />
+    <Property Name="ngaysinh" Type="date" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sodutaikhoan" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Trangthai" Type="bit" />
+    <Property Name="Ma_loaitaikhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="Taikhoannganhang">
+    <Key>
+      <PropertyRef Name="Ma_Taikhoannganhang" />
+    </Key>
+    <Property Name="Ma_Taikhoannganhang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sotaikhoan" Type="int" />
+    <Property Name="Tenchutaikhoan" Type="varchar" MaxLength="100" />
+    <Property Name="Ma_Taikhoan" Type="int" />
+    <Property Name="Ma_nganhang" Type="int" />
+  </EntityType>
+  <EntityType Name="Vatpham">
+    <Key>
+      <PropertyRef Name="Ma_vatpham" />
+    </Key>
+    <Property Name="Ma_vatpham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tenvatpham" Type="nvarchar" MaxLength="50" />
+    <Property Name="Giaban" Type="decimal" Precision="9" Scale="3" />
+    <Property Name="Mota" Type="nvarchar(max)" />
+    <Property Name="Anhvatpham" Type="nvarchar(max)" />
+    <Property Name="Trangthai" Type="bit" />
+    <Property Name="Ma_danhmuc" Type="int" />
+  </EntityType>
+  <Function Name="Layallvp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Layvptheoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="Shopaccjx2ModelStoreContainer">
+    <EntitySet Name="Danhmuc" EntityType="Self.Danhmuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donhang" EntityType="Self.Donhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lichsugiaodich" EntityType="Self.Lichsugiaodich" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loaiphai" EntityType="Self.Loaiphai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loaitaikhoan" EntityType="Self.Loaitaikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nganhang" EntityType="Self.Nganhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nhanvat" EntityType="Self.Nhanvat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phanhoi" EntityType="Self.Phanhoi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sodutaikhoan" EntityType="Self.Sodutaikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taikhoan" EntityType="Self.Taikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taikhoannganhang" EntityType="Self.Taikhoannganhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vatpham" EntityType="Self.Vatpham" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

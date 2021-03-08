@@ -1,0 +1,36 @@
+﻿body {
+    margin:0;
+}
+
+.wrapper_bottom {
+    background: url(/assets/img/bg-footer.jpg) center bottom no-repeat;
+}
+
+.wrapper {
+    background: url(/assets/img/bg-home.jpg) center top no-repeat !important;
+}
+
+header {
+    position: relative;
+    width: 1002px;
+    margin: 0 auto;
+    height: 315px;
+    z-index: 10;
+}
+
+.page_header-logo {
+    background: url(/assets/img/logo.png) no-repeat;
+    display: block;
+    height: 100px;
+    width: 256px;
+    position: absolute;
+    top: 0;
+    left: 300px;
+    z-index: 20;
+    text-indent: -9999px;
+}
+
+
+.site {
+    height: 500px;
+}
