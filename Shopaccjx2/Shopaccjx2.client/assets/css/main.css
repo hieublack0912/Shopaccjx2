@@ -25,7 +25,6 @@ header {
     width: 256px;
     position: absolute;
     top: 0;
-    left: 300px;
     z-index: 20;
     text-indent: -9999px;
 }
