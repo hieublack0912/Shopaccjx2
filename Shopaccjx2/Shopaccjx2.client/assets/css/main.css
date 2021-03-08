@@ -34,3 +34,12 @@ header {
 .site {
     height: 500px;
 }
+
+.wrapper .mid_test {
+    height: 500px;
+    width: auto;
+}
+
+.hihi {
+    height: 300px;
+}

@@ -6,4 +6,32 @@
     <header>
         <a href="/" class="page_header-logo" title="Trở về trang chủ">Trang chủ</a>
     </header>
+    <div class="mid_test">
+        
+    </div>
 </div>
+
+
+<script>
+    var logo = document.querySelector('.page_header-logo');
+    function thaydoileftlogo() {
+        var x = window.innerWidth;
+        if (x >= 720 && x <= 1000) {
+            var lf = (300 - (1000 - x) / 2);
+            console.log(`${lf}px`)
+            logo.style.left = `${lf}px`;
+            logo.style.display = "block";
+        } else if (x < 720) {
+            logo.style.display = "none";
+        }
+    }
+    var y = window.innerWidth;
+    if (y >= 720 && y <= 1000) {
+        var lfm = (300 - (1000 - y) / 2);
+        console.log(`${lfm}px`)
+        logo.style.left = `${lfm}px`;
+    } else if (y < 720) {
+        logo.style.display = "none";
+    }
+    window.addEventListener("resize", thaydoileftlogo);
+</script>
