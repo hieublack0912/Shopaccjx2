@@ -1,4 +1,8 @@
-﻿.wrapper_bottom {
+﻿body {
+    position:relative;
+}
+
+.wrapper_bottom {
     background: url(/assets/img/bg-footer.jpg) center bottom no-repeat;
 }
 
@@ -16,5 +20,5 @@ a:hover {
 }
 
 .bt-1 {
-    border-top: 1px #FFFFCC solid;
+    border-top: 1px silver solid;
 }
