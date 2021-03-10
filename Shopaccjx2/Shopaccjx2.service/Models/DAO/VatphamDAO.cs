@@ -90,7 +90,7 @@ namespace Shopaccjx2.service.Models.DAO
             using (var ef = new Shopaccjx2Entities())
             {
                 int re = ef.Database.ExecuteSqlCommand("Xoavatpham " + id);
-                return re != null ? re : 0;
+                return re;
             }
         }
     }

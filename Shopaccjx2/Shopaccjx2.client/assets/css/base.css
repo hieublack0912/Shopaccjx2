@@ -1,0 +1,20 @@
+﻿.wrapper_bottom {
+    background: url(/assets/img/bg-footer.jpg) center bottom no-repeat;
+}
+
+.wrapper {
+    background: url(/assets/img/bg-home.jpg) center top no-repeat !important;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.bt-1 {
+    border-top: 1px #FFFFCC solid;
+}
