@@ -47,6 +47,10 @@ header {
     padding: 0 15px;
 }
 
+a.header_nav-item:hover {
+    color: red !important;
+}
+
 .header_nav-item.active {
     background-image: linear-gradient(rgba(124, 22, 4, 0), rgb(64, 11, 1));
 }
@@ -75,8 +79,8 @@ header {
     height: auto;
     background-color: rgba(9, 27, 41, 0.9);
     z-index: 1;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .pay_list-item {
@@ -145,6 +149,7 @@ a.pay_list-item:hover, a.log_list-item:hover {
 
 .sdt_shop {
     background-color: rgba(0,0,0,0.8);
+    border-radius: 50px;
 }
 
 .icon-phone {
@@ -167,6 +172,67 @@ a.pay_list-item:hover, a.log_list-item:hover {
 .img-slider {
     width:100%;
 }
+
+/*Top account*/
+.top__account-title {
+    border-bottom: red solid 2px;
+}
+
+.top__account-text {
+    color: red;
+    padding: 2px 4px;
+    margin-bottom: 0;
+}
+
+/*account*/
+.card__account {
+    margin-top: 12px;
+    border: rgba(0, 0, 0, 0.3) solid 1px;
+    border-radius: 2px;
+}
+
+.card__account-img {
+    width: 100%;
+    border-radius: 2px;
+}
+
+.card__account-title {
+    padding-left: 16px;
+}
+
+.card__account-list {    
+    padding: 8px 0 8px 16px;
+    border-bottom: rgba(0, 0, 0, 0.3) solid 1px;
+    font-weight:500;
+}
+
+.card__account-list:first-child {
+    border-top: rgba(0, 0, 0, 0.3) solid 1px;
+}
+
+
+/*sect*/
+.list__sect-title {
+    margin-top:10px;
+    border-bottom: red solid 2px;
+}
+
+.list__sect-text {
+    color: red;
+    padding: 2px 4px;
+    margin-bottom: 0;
+}
+
+.list__sect-icon {
+    font-size: 20px;
+}
+
+
+.list__sect-list__item {
+    margin-left: 20%;
+}
+
+
 
 
 

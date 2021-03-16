@@ -14,14 +14,16 @@ function thaydoiwidth() {
     } else {
         var lgt = x / 2 - 200;
         logo.css("display", "block");
-        logo.css("left", `${lgt}px`);
+        logo.css("left", `${lgt}px`);        
     }
     if (x >= 768) {
         headerPc.css("display", "block");
         headerSm.css("display", "none");
+        bongMo.removeClass('bongmo');
     } else {
         headerPc.css("display", "none");
         headerSm.css("display", "block");
+        headerListSm.addClass('show_off');
     }
 }
 var y = window.innerWidth;
@@ -29,6 +31,7 @@ if (y < 992) {
     logo.css("display", "none");
 } else if (y >= 1200) {
     logo.css("left", "400px");
+
 } else {
     var lgt = y / 2 - 200;
     logo.css("left", `${lgt}px`);
