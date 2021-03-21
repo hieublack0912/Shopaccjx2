@@ -39,6 +39,7 @@ namespace Shopaccjx2.data.Model
         public virtual DbSet<Taikhoan> Taikhoans { get; set; }
         public virtual DbSet<Taikhoannganhang> Taikhoannganhangs { get; set; }
         public virtual DbSet<Vatpham> Vatphams { get; set; }
+        public virtual DbSet<Monphai> Monphais { get; set; }
     
         public virtual ObjectResult<Layallvp_Result> Layallvp()
         {
@@ -52,6 +53,87 @@ namespace Shopaccjx2.data.Model
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Layvptheoid_Result>("Layvptheoid", idParameter);
+        }
+    
+        public virtual ObjectResult<Layallvpban_Result> Layallvpban()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Layallvpban_Result>("Layallvpban");
+        }
+    
+        public virtual int Suavatpham(Nullable<int> ma_vatpham, string tenvatpham, Nullable<decimal> giaban, string mota, string anhvatpham, Nullable<bool> trangthai, Nullable<int> ma_danhmuc)
+        {
+            var ma_vatphamParameter = ma_vatpham.HasValue ?
+                new ObjectParameter("Ma_vatpham", ma_vatpham) :
+                new ObjectParameter("Ma_vatpham", typeof(int));
+    
+            var tenvatphamParameter = tenvatpham != null ?
+                new ObjectParameter("Tenvatpham", tenvatpham) :
+                new ObjectParameter("Tenvatpham", typeof(string));
+    
+            var giabanParameter = giaban.HasValue ?
+                new ObjectParameter("Giaban", giaban) :
+                new ObjectParameter("Giaban", typeof(decimal));
+    
+            var motaParameter = mota != null ?
+                new ObjectParameter("Mota", mota) :
+                new ObjectParameter("Mota", typeof(string));
+    
+            var anhvatphamParameter = anhvatpham != null ?
+                new ObjectParameter("Anhvatpham", anhvatpham) :
+                new ObjectParameter("Anhvatpham", typeof(string));
+    
+            var trangthaiParameter = trangthai.HasValue ?
+                new ObjectParameter("Trangthai", trangthai) :
+                new ObjectParameter("Trangthai", typeof(bool));
+    
+            var ma_danhmucParameter = ma_danhmuc.HasValue ?
+                new ObjectParameter("Ma_danhmuc", ma_danhmuc) :
+                new ObjectParameter("Ma_danhmuc", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Suavatpham", ma_vatphamParameter, tenvatphamParameter, giabanParameter, motaParameter, anhvatphamParameter, trangthaiParameter, ma_danhmucParameter);
+        }
+    
+        public virtual int Themvatpham(string tenvatpham, Nullable<decimal> giaban, string mota, string anhvatpham, Nullable<bool> trangthai, Nullable<int> ma_danhmuc)
+        {
+            var tenvatphamParameter = tenvatpham != null ?
+                new ObjectParameter("Tenvatpham", tenvatpham) :
+                new ObjectParameter("Tenvatpham", typeof(string));
+    
+            var giabanParameter = giaban.HasValue ?
+                new ObjectParameter("Giaban", giaban) :
+                new ObjectParameter("Giaban", typeof(decimal));
+    
+            var motaParameter = mota != null ?
+                new ObjectParameter("Mota", mota) :
+                new ObjectParameter("Mota", typeof(string));
+    
+            var anhvatphamParameter = anhvatpham != null ?
+                new ObjectParameter("Anhvatpham", anhvatpham) :
+                new ObjectParameter("Anhvatpham", typeof(string));
+    
+            var trangthaiParameter = trangthai.HasValue ?
+                new ObjectParameter("Trangthai", trangthai) :
+                new ObjectParameter("Trangthai", typeof(bool));
+    
+            var ma_danhmucParameter = ma_danhmuc.HasValue ?
+                new ObjectParameter("Ma_danhmuc", ma_danhmuc) :
+                new ObjectParameter("Ma_danhmuc", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Themvatpham", tenvatphamParameter, giabanParameter, motaParameter, anhvatphamParameter, trangthaiParameter, ma_danhmucParameter);
+        }
+    
+        public virtual int Xoavatpham(Nullable<int> ma_vatpham)
+        {
+            var ma_vatphamParameter = ma_vatpham.HasValue ?
+                new ObjectParameter("Ma_vatpham", ma_vatpham) :
+                new ObjectParameter("Ma_vatpham", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Xoavatpham", ma_vatphamParameter);
+        }
+    
+        public virtual ObjectResult<Laytatcaloaiphai_Result> Laytatcaloaiphai()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Laytatcaloaiphai_Result>("Laytatcaloaiphai");
         }
     }
 }

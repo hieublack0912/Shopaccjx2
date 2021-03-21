@@ -37,8 +37,9 @@
     <EntitySetMapping Name="Loaiphais">
       <EntityTypeMapping TypeName="Shopaccjx2Model.Loaiphai">
         <MappingFragment StoreEntitySet="Loaiphai">
+          <ScalarProperty Name="Ma_monphai" ColumnName="Ma_monphai" />
+          <ScalarProperty Name="Tenhephai" ColumnName="Tenhephai" />
           <ScalarProperty Name="Ma_phai" ColumnName="Ma_phai" />
-          <ScalarProperty Name="Tenphai" ColumnName="Tenphai" />
           <ScalarProperty Name="Mota" ColumnName="Mota" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -176,6 +177,41 @@
           <ScalarProperty Name="Anhvatpham" ColumnName="Anhvatpham" />
           <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
           <ScalarProperty Name="Ma_danhmuc" ColumnName="Ma_danhmuc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Layallvpban" FunctionName="Shopaccjx2Model.Store.Layallvpban">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Shopaccjx2Model.Layallvpban_Result">
+          <ScalarProperty Name="Ma_vatpham" ColumnName="Ma_vatpham" />
+          <ScalarProperty Name="Tenvatpham" ColumnName="Tenvatpham" />
+          <ScalarProperty Name="Giaban" ColumnName="Giaban" />
+          <ScalarProperty Name="Mota" ColumnName="Mota" />
+          <ScalarProperty Name="Anhvatpham" ColumnName="Anhvatpham" />
+          <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
+          <ScalarProperty Name="Tendanhmuc" ColumnName="Tendanhmuc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Suavatpham" FunctionName="Shopaccjx2Model.Store.Suavatpham" />
+    <FunctionImportMapping FunctionImportName="Themvatpham" FunctionName="Shopaccjx2Model.Store.Themvatpham" />
+    <FunctionImportMapping FunctionImportName="Xoavatpham" FunctionName="Shopaccjx2Model.Store.Xoavatpham" />
+    <EntitySetMapping Name="Monphais">
+      <EntityTypeMapping TypeName="Shopaccjx2Model.Monphai">
+        <MappingFragment StoreEntitySet="Monphai">
+          <ScalarProperty Name="Mota" ColumnName="Mota" />
+          <ScalarProperty Name="Tenmonphai" ColumnName="Tenmonphai" />
+          <ScalarProperty Name="Ma_monphai" ColumnName="Ma_monphai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Laytatcaloaiphai" FunctionName="Shopaccjx2Model.Store.Laytatcaloaiphai">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Shopaccjx2Model.Laytatcaloaiphai_Result">
+          <ScalarProperty Name="Ma_phai" ColumnName="Ma_phai" />
+          <ScalarProperty Name="Tenhephai" ColumnName="Tenhephai" />
+          <ScalarProperty Name="Tenmp" ColumnName="Tenmp" />
+          <ScalarProperty Name="Mota" ColumnName="Mota" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

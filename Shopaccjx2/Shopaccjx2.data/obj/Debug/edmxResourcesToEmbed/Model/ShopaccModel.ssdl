@@ -6,7 +6,7 @@
     </Key>
     <Property Name="Ma_danhmuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Tendanhmuc" Type="nvarchar" MaxLength="50" />
-    <Property Name="Ghichu" Type="text" />
+    <Property Name="Ghichu" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Donhang">
     <Key>
@@ -35,8 +35,9 @@
       <PropertyRef Name="Ma_phai" />
     </Key>
     <Property Name="Ma_phai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Tenphai" Type="nvarchar" MaxLength="50" />
-    <Property Name="Mota" Type="text" />
+    <Property Name="Tenhephai" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ma_monphai" Type="int" />
+    <Property Name="Mota" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Loaitaikhoan">
     <Key>
@@ -45,6 +46,14 @@
     <Property Name="Ma_loaitaikhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Loaitaikhoan" Type="nvarchar" MaxLength="50" />
     <Property Name="Ghichu" Type="text" />
+  </EntityType>
+  <EntityType Name="Monphai">
+    <Key>
+      <PropertyRef Name="Ma_monphai" />
+    </Key>
+    <Property Name="Ma_monphai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tenmonphai" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mota" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Nganhang">
     <Key>
@@ -141,8 +150,30 @@
     <Property Name="Ma_danhmuc" Type="int" />
   </EntityType>
   <Function Name="Layallvp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Layallvpban" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Laytatcaloaiphai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Layvptheoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Suavatpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_vatpham" Type="int" Mode="In" />
+    <Parameter Name="Tenvatpham" Type="nvarchar" Mode="In" />
+    <Parameter Name="Giaban" Type="decimal" Mode="In" />
+    <Parameter Name="Mota" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Anhvatpham" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Trangthai" Type="bit" Mode="In" />
+    <Parameter Name="Ma_danhmuc" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Themvatpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tenvatpham" Type="nvarchar" Mode="In" />
+    <Parameter Name="Giaban" Type="decimal" Mode="In" />
+    <Parameter Name="Mota" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Anhvatpham" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Trangthai" Type="bit" Mode="In" />
+    <Parameter Name="Ma_danhmuc" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Xoavatpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Ma_vatpham" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="Shopaccjx2ModelStoreContainer">
     <EntitySet Name="Danhmuc" EntityType="Self.Danhmuc" Schema="dbo" store:Type="Tables" />
@@ -150,6 +181,7 @@
     <EntitySet Name="Lichsugiaodich" EntityType="Self.Lichsugiaodich" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Loaiphai" EntityType="Self.Loaiphai" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Loaitaikhoan" EntityType="Self.Loaitaikhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Monphai" EntityType="Self.Monphai" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Nganhang" EntityType="Self.Nganhang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Nhanvat" EntityType="Self.Nhanvat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Phanhoi" EntityType="Self.Phanhoi" Schema="dbo" store:Type="Tables" />

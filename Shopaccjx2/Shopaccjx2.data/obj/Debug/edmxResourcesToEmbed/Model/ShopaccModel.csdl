@@ -6,7 +6,7 @@
     </Key>
     <Property Name="Ma_danhmuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Tendanhmuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Ghichu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Ghichu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Donhang">
     <Key>
@@ -35,8 +35,9 @@
       <PropertyRef Name="Ma_phai" />
     </Key>
     <Property Name="Ma_phai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Tenphai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mota" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Tenhephai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ma_monphai" Type="Int32" />
   </EntityType>
   <EntityType Name="Loaitaikhoan">
     <Key>
@@ -157,12 +158,35 @@
     <FunctionImport Name="Layvptheoid" ReturnType="Collection(Shopaccjx2Model.Layvptheoid_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="Layallvpban" ReturnType="Collection(Shopaccjx2Model.Layallvpban_Result)" />
+    <FunctionImport Name="Suavatpham">
+      <Parameter Name="Ma_vatpham" Mode="In" Type="Int32" />
+      <Parameter Name="Tenvatpham" Mode="In" Type="String" />
+      <Parameter Name="Giaban" Mode="In" Type="Decimal" />
+      <Parameter Name="Mota" Mode="In" Type="String" />
+      <Parameter Name="Anhvatpham" Mode="In" Type="String" />
+      <Parameter Name="Trangthai" Mode="In" Type="Boolean" />
+      <Parameter Name="Ma_danhmuc" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Themvatpham">
+      <Parameter Name="Tenvatpham" Mode="In" Type="String" />
+      <Parameter Name="Giaban" Mode="In" Type="Decimal" />
+      <Parameter Name="Mota" Mode="In" Type="String" />
+      <Parameter Name="Anhvatpham" Mode="In" Type="String" />
+      <Parameter Name="Trangthai" Mode="In" Type="Boolean" />
+      <Parameter Name="Ma_danhmuc" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Xoavatpham">
+      <Parameter Name="Ma_vatpham" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Monphais" EntityType="Shopaccjx2Model.Monphai" />
+    <FunctionImport Name="Laytatcaloaiphai" ReturnType="Collection(Shopaccjx2Model.Laytatcaloaiphai_Result)" />
   </EntityContainer>
   <ComplexType Name="Layallvp_Result">
     <Property Type="Int32" Name="Ma_vatpham" Nullable="false" />
     <Property Type="String" Name="Tenvatpham" Nullable="true" MaxLength="50" />
     <Property Type="Decimal" Name="Giaban" Nullable="true" Precision="9" Scale="3" />
-    <Property Type="String" Name="Mota" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="Mota" Nullable="true" />
     <Property Type="String" Name="Anhvatpham" Nullable="true" />
     <Property Type="Boolean" Name="Trangthai" Nullable="true" />
     <Property Type="String" Name="Tendanhmuc" Nullable="true" MaxLength="50" />
@@ -175,5 +199,28 @@
     <Property Type="String" Name="Anhvatpham" Nullable="true" />
     <Property Type="Boolean" Name="Trangthai" Nullable="true" />
     <Property Type="Int32" Name="Ma_danhmuc" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Layallvpban_Result">
+    <Property Type="Int32" Name="Ma_vatpham" Nullable="false" />
+    <Property Type="String" Name="Tenvatpham" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="Giaban" Nullable="true" Precision="9" Scale="3" />
+    <Property Type="String" Name="Mota" Nullable="true" />
+    <Property Type="String" Name="Anhvatpham" Nullable="true" />
+    <Property Type="Boolean" Name="Trangthai" Nullable="true" />
+    <Property Type="String" Name="Tendanhmuc" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="Monphai">
+    <Key>
+      <PropertyRef Name="Ma_monphai" />
+    </Key>
+    <Property Name="Ma_monphai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tenmonphai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mota" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="Laytatcaloaiphai_Result">
+    <Property Type="Int32" Name="Ma_phai" Nullable="false" />
+    <Property Type="String" Name="Tenhephai" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Tenmp" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Mota" Nullable="true" MaxLength="200" />
   </ComplexType>
 </Schema>

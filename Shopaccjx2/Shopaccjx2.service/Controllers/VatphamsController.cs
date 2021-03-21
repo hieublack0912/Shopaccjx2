@@ -33,7 +33,7 @@ namespace Shopaccjx2.service.Controllers
 
         [HttpGet]
         [Route("getvatpham")]
-        // GET: api/Vatphams/5
+        // GET: api/vp/getvatpham?id=1
         public IHttpActionResult Getvatphamtheoid(int id)
         {
             var a = vpDAO.Layvatphamtheoid(id);
@@ -61,7 +61,7 @@ namespace Shopaccjx2.service.Controllers
 
         // DELETE: api/Vatphams/5
         [HttpDelete]
-        [Route("deleteproduct")]
+        [Route("deletevatpham")]
         public int Deletevatpham(int id)
         {
             try

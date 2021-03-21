@@ -94,7 +94,13 @@
     <Compile Include="Model\Donhang.cs">
       <DependentUpon>ShopaccModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Layallvpban_Result.cs">
+      <DependentUpon>ShopaccModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Layallvp_Result.cs">
+      <DependentUpon>ShopaccModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Laytatcaloaiphai_Result.cs">
       <DependentUpon>ShopaccModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Layvptheoid_Result.cs">
@@ -107,6 +113,9 @@
       <DependentUpon>ShopaccModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Loaitaikhoan.cs">
+      <DependentUpon>ShopaccModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Monphai.cs">
       <DependentUpon>ShopaccModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Nganhang.cs">

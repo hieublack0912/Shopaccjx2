@@ -15,7 +15,7 @@ namespace Shopaccjx2.service.Models.DAO
 
             using (var vp = new Shopaccjx2Entities())
             {
-                lst = vp.Database.SqlQuery<VatphamModel>("exec Layallvp").ToList();
+                lst = vp.Database.SqlQuery<VatphamModel>("Layallvp").ToList();
                 if (lst.Count() > 0)
                 {
                     return lst;
@@ -31,7 +31,7 @@ namespace Shopaccjx2.service.Models.DAO
 
             using (var vp = new Shopaccjx2Entities())
             {
-                lst = vp.Database.SqlQuery<VatphamModel>("exec Layallvpban").ToList();
+                lst = vp.Database.SqlQuery<VatphamModel>("Layallvpban").ToList();
                 if (lst.Count() > 0)
                 {
                     return lst;
@@ -45,7 +45,7 @@ namespace Shopaccjx2.service.Models.DAO
         {
             using (var ef = new Shopaccjx2Entities())
             {
-                List<Vatpham> re = ef.Database.SqlQuery<Vatpham>("exec Layvptheoid " + id_vp).ToList();
+                List<Vatpham> re = ef.Database.SqlQuery<Vatpham>("Layvptheoid " + id_vp).ToList();
                 return re;
             }
 
@@ -55,7 +55,7 @@ namespace Shopaccjx2.service.Models.DAO
         {
             using (var ef = new Shopaccjx2Entities())
             {
-                ef.Database.ExecuteSqlCommand("Themvatpham (@ten , @gia , @mota , @anh , @trangthai , @madanhmuc)",
+                ef.Database.ExecuteSqlCommand("Themvatpham @ten , @gia , @mota , @anh , @trangthai , @madanhmuc",
                 new[]
                 {
                         new SqlParameter("ten", vp.Tenvatpham),
@@ -72,9 +72,10 @@ namespace Shopaccjx2.service.Models.DAO
         {
             using (var ef = new Shopaccjx2Entities())
             {
-                ef.Database.ExecuteSqlCommand("Suavatpham (@id, @ten , @gia , @mota , @anh , @trangthai , @madanhmuc)",
+                ef.Database.ExecuteSqlCommand("Suavatpham @mavp, @ten , @gia , @mota , @anh , @trangthai , @madanhmuc",
                 new[]
                 {
+                        new SqlParameter("mavp",vp.Ma_vatpham),
                         new SqlParameter("ten", vp.Tenvatpham),
                         new SqlParameter("gia", vp.Giaban),
                         new SqlParameter("mota", vp.Mota),

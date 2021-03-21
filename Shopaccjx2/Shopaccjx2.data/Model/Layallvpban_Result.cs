@@ -10,13 +10,15 @@
 namespace Shopaccjx2.data.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Loaiphai
+    public partial class Layallvpban_Result
     {
-        public int Ma_phai { get; set; }
-        public string Tenhephai { get; set; }
-        public Nullable<int> Ma_monphai { get; set; }
+        public int Ma_vatpham { get; set; }
+        public string Tenvatpham { get; set; }
+        public Nullable<decimal> Giaban { get; set; }
         public string Mota { get; set; }
+        public string Anhvatpham { get; set; }
+        public Nullable<bool> Trangthai { get; set; }
+        public string Tendanhmuc { get; set; }
     }
 }

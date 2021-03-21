@@ -12,11 +12,10 @@ namespace Shopaccjx2.data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Loaiphai
+    public partial class Monphai
     {
-        public int Ma_phai { get; set; }
-        public string Tenhephai { get; set; }
-        public Nullable<int> Ma_monphai { get; set; }
+        public int Ma_monphai { get; set; }
+        public string Tenmonphai { get; set; }
         public string Mota { get; set; }
     }
 }

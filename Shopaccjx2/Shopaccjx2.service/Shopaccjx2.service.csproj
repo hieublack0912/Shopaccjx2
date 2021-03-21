@@ -161,12 +161,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\LoaiphaiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonphaiController.cs" />
     <Compile Include="Controllers\VatphamsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\LoaiphaiDAO.cs" />
+    <Compile Include="Models\DAO\MonphaiDAO.cs" />
     <Compile Include="Models\DAO\VatphamDAO.cs" />
+    <Compile Include="Models\LoaiphaiModel.cs" />
     <Compile Include="Models\VatphamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
