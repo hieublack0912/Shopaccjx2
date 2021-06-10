@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Shopaccjx2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/fontawesome-free-5.15.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+    <div class="wrapper_bottom">
+        <div class="wrapper">
+            <header>
+                <nav class="header_nav" id="header_nav-PC">
+                    <ul class="header_nav-list">
+                        <li class="list_item-row">
+                            <a href="/" class="header_nav-item text-light active" title="Trang Chủ">Trang Chủ</a>
+                        </li>
+                        <li class="list_item-row" id="pay_show-list">
+                            <a class="header_nav-item text-light" title="Nạp tiền tài khoản">Nạp tiền</a>
+                            <ul class="pay_list">
+                                <li>
+                                    <a href="~/Pay/Index" class="pay_list-item text-light"> - Nạp bằng thẻ cào(đang phát triển) - </a>
+                                </li>
+                                <li>
+                                    <a href="~/pay/Banking" class="pay_list-item text-light"> - Nạp bằng chuyển khoản ngân hàng - </a>
+                                </li>
+                                <li>
+                                    <a href="~/Pay/DigitalWallet" class="pay_list-item text-light"> - Nạp bằng ví điện tử - </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="list_item-row list-item-right" id="log_show-list">
+                                <a class="header_nav-item text-light" title="Người dùng"><i class="fas fa-user mr-2"></i>   @User.Identity.Name!</a>
+                                <ul class="log_list">
+                                    <li>
+                                        @await Component.InvokeAsync("Balance")
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Details" class="log_list-item text-light"> - Thông tin tài khoản - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Paylist?userName=@User.Identity.Name" class="log_list-item text-light"> - Tài khoản đã mua - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Trans?userName=@User.Identity.Name" class="log_list-item text-light"> - Lịch sử giao dịch - </a>
+                                    </li>
+                                    <li>
+                                        <form action="/Home/Logout" method="post" id="logout-pc">
+                                            <button class="btn-logout">
+                                                <span class="log_list-item text-light link-logout"> - Đăng xuất - </span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list_item-row list-item-right" id="log_show-list">
+                                <a class="header_nav-item text-light" title="Đăng ký và đăng nhập">Đăng ký/ đăng nhập</a>
+                                <ul class="log_list">
+                                    <li>
+                                        <a href="~/User/Register" class="log_list-item text-light register-btn"> - Đăng ký - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/login" class="log_list-item text-light login-btn"> - Đăng nhập - </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        <li class="list_item-row list-item-right">
+                            <a href="https://www.facebook.com/ShopAccJx2" class="header_nav-item text-light" title="Fanpage">fanpage</a>
+                        </li>
+                        <li class="list_item-row list-item-right">
+                            <a href="~/Contact" class="header_nav-item text-light" title="Hỗ trợ">Hỗ trợ</a>
+                        </li>
+                    </ul>
+                    <a href="" class="page_header-logo" title="Trở về trang chủ">Trang chủ</a>
+                </nav>
+                <nav class="header_nav" id="header_nav-sm" onclick="showlist()">
+                    <button class="show_nav-menu"><i class="fas fa-list menu_icon"></i></button>
+                    <ul class="header_nav-listSm show_off bg-dark">
+                        <li>
+                            <a href="/" class="header_nav-item text-light" title="Trang Chủ">Trang Chủ</a>
+                        </li>
+                        <li class="bt-1">
+                            <ul class="pay_list-Sm">
+                                <li>
+                                    <a class="header_nav-item text-light" title="Nạp tiền tài khoản">Nạp tiền</a>
+                                </li>
+                                <li>
+                                    <a href="~/Pay/Index" class="pay_list-item text-light text-center pt-1 pb-1"> - Nạp bằng thẻ cào - </a>
+                                </li>
+                                <li>
+                                    <a href="~/pay/Banking" class="pay_list-item text-light text-center pt-1 pb-1"> - Nạp bằng chuyển khoản ngân hàng - </a>
+                                </li>
+                                <li>
+                                    <a href="~/pay/DigitalWallet" class="pay_list-item text-light text-center pt-1 pb-1"> - Nạp bằng ví điện tử - </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="bt-1">
+                            <a href="~/Contact" class="header_nav-item text-light" title="Hỗ trợ">Hỗ trợ</a>
+                        </li>
+                        <li class="bt-1">
+                            <a href="https://www.facebook.com/ShopAccJx2" class="header_nav-item text-light" title="Fanpage">fanpage</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="bt-1">
+                                <ul class="log_list-Sm">
+                                    <li>
+                                        <a class="header_nav-item text-light" title="Người dùng">@User.Identity.Name</a>
+                                        @await Component.InvokeAsync("Balance")
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Details" class="log_list-item text-light pt-1 pb-1"> - Thông tin tài khoản - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Paylist?userName=@User.Identity.Name" class="log_list-item text-light pt-1 pb-1"> - Tài khoản đã mua - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Trans?userName=@User.Identity.Name" class="log_list-item text-light pt-1 pb-1"> - Lịch sử giao dịch - </a>
+                                    </li>
+                                    <li>
+                                        <form action="/Home/Logout" method="post" id="logout-pc">
+                                            <button class="btn-logout">
+                                                <span class="log_list-item text-light link-logout"> - Đăng xuất - </span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="bt-1">
+                                <ul class="log_list-Sm">
+                                    <li>
+                                        <a class="header_nav-item text-light" title="Đăng ký và đăng nhập">Đăng ký/ đăng nhập</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Register" class="log_list-item text-light pt-1 pb-1"> - Đăng ký - </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/User/Login" class="log_list-item text-light pt-1 pb-1"> - Đăng nhập - </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6"></div>
+                    <div class="col col-lg-5 col-md-6">
+                        <div class="sdt_shop d-flex">
+                            <div class="sdt_shop-icon pl-3 pt-1"><i class="fas fa-phone-alt icon-phone"></i></div>
+                            <div class="sdt_shop-text ml-4">
+                                <p class="text_min text-light">Hỗ Trợ</p>
+                                <p class="text-sdt text-warning">0358.219.991</p>
+                            </div>
+                        </div>
+
+                        @*slider*@
+                        <div id="slider" class="carousel slide mt-2" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+                                <li data-target="#slider" data-slide-to="0" class="active"></li>
+                                <li data-target="#slider" data-slide-to="1"></li>
+                                <li data-target="#slider" data-slide-to="2"></li>
+                            </ul>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="">
+                                        <img src="~/assets/img/slider/slider-test1.jpg" class="img-slider" alt="Ảnh quảng cáo">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="">
+                                        <img src="~/assets/img/slider/slider-test2.jpg" class="img-slider" alt="Ảnh quảng cáo">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="">
+                                        <img src="~/assets/img/slider/slider-test3.jpg" class="img-slider" alt="Ảnh quảng cáo">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row flex-wrap-reverse">
+                    <div class="col col-md-9">
+                        @RenderBody()
+                    </div>
+                    <div class="col-md-3">
+                        @await Component.InvokeAsync("SideBar")
+                    </div>
+                </div>
+                <div class="row mt-5 mb-3">
+                    <div class="col col-lg-4">
+                        <h5 style="text-decoration: underline" class="text-center">Giới thiệu</h5>
+                        <dl>
+                            <dt>
+                                Giá trị website
+                            </dt>
+                            <dd>
+                                - Mang đến cho người dùng website bán account game Võ Lâm 2 đầu tiên.
+                            </dd>
+                            <dd>
+                                - Là website bán account uy tín số 1 về game Võ Lâm 2
+                            </dd>
+                            <dt>Website cam kết</dt>
+                            <dd>
+                                - Mang đến trải nghiệm hài lòng cho khách hàng
+                            </dd>
+                            <dd>
+                                - Shop giải đáp 100% thắc mắc của khách hàng
+                            </dd>
+                            <dd>
+                                - Tất cả giao dịch đều được thực hiện một cách nhanh nhất có thể
+                            </dd>
+                            <dd>
+                                - Shop giao dịch tự động 24/24 Có Đội CSKH nhiệt tình thân thiện
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col col-lg-4">
+                        <h5 style="text-decoration: underline" class="text-center">Hỗ trợ khách hàng</h5>
+                        <ul>
+                            <li>
+                                <a href="~/Contact" class="text-pay text-dark">Gửi yêu cầu hỗ trợ cho chúng tôi</a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/ShopAccJx2/" class="text-pay text-dark">Liên hệ với chúng tôi</a>
+                            </li>
+                            <li>
+                                <a href="mailto: hieublack0912@gmail.com" class="text-pay text-dark" title="hieublack0912@gmail.com">Liên hệ qua Gmail</a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/namthientvt/" class="text-pay text-dark" title="namthientvt">Facebook cá nhân chủ shop</a>
+                            </li>
+                            <li>
+                                <a class="text-pay text-dark" title="SDT">Số điện thoại hỗ trợ</a><br />
+                                <p class="text-pay text-danger">035.821.9991 <span class="text-dark">hoặc</span> 058.404.7418</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col col-lg-4">
+                        <h5 style="text-decoration: underline" class="text-center">Các mạng xã hội liên quan</h5>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href="https://www.facebook.com/ShopAccJx2/" class="float-right">
+                                    <img alt="logo youtube" src="~/assets/img/facebook.png" width="75" />
+                                </a>
+                            </div>
+                            <div class="col-sm-6 d-flex">
+                                <a href="https://www.facebook.com/ShopAccJx2/" class="align-self-center text-info text-pay">Shop Acc VLTK 2</a>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-6">
+                                <a href="https://www.youtube.com/channel/UCU4PsxJUtBI4T3yXRQhspxA" class="float-right">
+                                    <img alt="logo youtube" src="~/assets/img/youtube.png" width="75" />
+                                </a>
+                            </div>
+                            <div class="col-sm-6 d-flex">
+                                <a href="https://www.youtube.com/channel/UCU4PsxJUtBI4T3yXRQhspxA" class="align-self-center text-danger text-pay">Hiếu Black</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-muted text-center">
+            <p>© 2021 - Website được xây dựng bởi Hiếu Black</p>
+            <p class="mb-0 pb-4"> Admin Shop Acc VLTK 2</p>
+        </footer>
+    </div>
+    <div id="bongmo" class="" onclick="showlist()"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Gửi hỗ trợ tới Admin";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Hỗ Trợ</h3></div>
+                            <h1 class="text-success">@Html.Raw(TempData["Message"])</h1>
+                            <div class="card-body">
+                                <form asp-action="Index" method="post">
+                                    <div asp-validation-summary="All" class="text-danger">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Họ và tên</label>
+                                        <input class="form-control" name="Name" type="text" placeholder="Ví dụ: Nguyễn văn A." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Email</label>
+                                        <input class="form-control" name="Email" type="text" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Số điện thoại</label>
+                                        <input class="form-control" name="PhoneNumber" type="datetime" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Nội dung cần được hỗ trợ</label>
+                                        <textarea class="form-control" name="Message" type="text" rows="5"></textarea>
+                                    </div>
+                                    <div class="auth-form__controls">
+                                        <button class="btn btn-primary pl-5 pr-5">Gửi</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small">Bạn có thể gửi mail tới địa chỉ <a href="mailto: hieublack0912@gmail.com">hieublack0912@gmail.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

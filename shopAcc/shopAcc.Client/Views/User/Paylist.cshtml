@@ -1,0 +1,105 @@
+﻿@using shopAcc.ViewModels.Common;
+@model PagedResult<shopAcc.ViewModels.Sales.OrderVm>
+@{
+    ViewData["Title"] = "Lịch sử giao dịch";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="container-fluid">
+    <ul class="breadcrumb mt-3">
+        <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
+        <li class="active ml-1">Account đã giao dịch</li>
+    </ul>
+    <div class="card mb-12">
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã giao dịch
+                            </th>
+                            <th>
+                                Thời gian
+                            </th>
+                            <th>
+                                Số tiền
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th>
+                                AccountBuy
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.OrderDate
+                                </td>
+                                <td>
+                                    @{
+                                        var x = @item.Price;
+                                        var y = x.ToString().Length;
+                                        var price = "".ToString();
+                                        if (y > 6)
+                                        {
+                                            var z = y - 3;
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                if (i == (z - 3))
+                                                {
+                                                    price = '.' + price;
+                                                    z = z - 3;
+                                                }
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else if (y < 6 && y > 3)
+                                        {
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else price = x.ToString();
+                                    }
+                                    @price
+                                </td>
+                                <td>
+                                    @{ var status = "".ToString();
+                                        if (item.Status == 0)
+                                            status = "Đang xác thực";
+                                        else if (item.Status == 1)
+                                            status = "Đang Tiến hành giao dịch";
+                                        else if (item.Status == 2)
+                                            status = "Thành công";
+                                        else status = "Thất bại"; }
+                                    @status
+                                </td>
+                                <td>
+                                    @item.AccountBuy
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

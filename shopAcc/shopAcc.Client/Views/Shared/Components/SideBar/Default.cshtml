@@ -1,0 +1,56 @@
+﻿@model List<shopAcc.ViewModels.Catalog.Categories.CategoryVm>
+
+<div class="list__sect">
+    <div class="list__sect-title">
+        <h4 class="list__sect-text">Môn phái</h4>
+    </div>
+    <div class="list__sect-item mt-4">
+        <ul class="sect__show">
+            @{
+                var parents = Model.Where(x => x.ParentId == null);
+            }
+            @for (int index = 0; index < parents.Count(); index++)
+            {
+                var parent = parents.ElementAt(index);
+                var children = Model.Where(x => x.ParentId == parent.Id);
+                if (children.Any())
+                {
+                    <li class="list__sect-list__item">
+                        <div class="d-flex">
+                            <a class="d-flex">
+                                <i class="fas fa-angle-double-right pt-1 text-dark"></i>
+                                <h5 class="ml-2 text-dark">@parent.Name</h5>
+                            </a>
+                            <div class="ml-auto mr-4"><i class="fas fa-caret-square-down list__sect-icon" id="monphai-@parent.Id"></i></div>
+                        </div>
+                        <ul class="list__sect-list sects_show show_off">
+                            @foreach (var item in children)
+                            {
+                                <li class="active">
+                                    <a href="/categories/@item.Id" class="text-secondary">@item.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="sects-list pt-1 pb-1" id="mp-@parent.Id">
+                        <a href="/categories/@parent.Id" class="d-flex">
+                            <i class="fas fa-angle-double-right pt-1 text-dark"></i>
+                            <h5 class="ml-2 text-dark">@parent.Name</h5>
+                        </a>
+                    </li>
+                }
+
+            }
+        </ul>
+    </div>
+</div>
+<div class="list__sect mt-5" style="overflow:hidden">
+    <div class="list__sect-title mb-2">
+        <h4 class="list__sect-text">FaceBook</h4>
+    </div>
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FShopAccJx2%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+</div>

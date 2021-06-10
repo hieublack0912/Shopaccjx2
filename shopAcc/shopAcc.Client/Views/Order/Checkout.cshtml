@@ -1,0 +1,133 @@
+﻿@model CheckoutView
+@{
+    ViewData["Title"] = "Xác nhận thanh toán";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<ul class="breadcrumb mt-3">
+    <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
+    <li class="active ml-1">Xác nhận thanh toán</li>
+</ul>
+@{
+    var x = @Model.Price;
+    var y = x.ToString().Length;
+    var price = "".ToString();
+    if (y > 6)
+    {
+        var z = y - 3;
+        for (var i = y - 3; i > 0; i--)
+        {
+            if (i == (z - 3))
+            {
+                price = '.' + price;
+                z = z - 3;
+            }
+            price = x.ToString()[i - 1] + price;
+        }
+    }
+    else if (y < 6 && y > 3)
+    {
+        for (var i = y - 3; i > 0; i--)
+        {
+            price = x.ToString()[i - 1] + price;
+        }
+    }
+    else price = x.ToString();
+
+    var a = @Model.Price;
+    var b = a.ToString().Length;
+    var balance = "".ToString();
+    if (y > 6)
+    {
+        var z = b - 3;
+        for (var i = b - 3; i > 0; i--)
+        {
+            if (i == (z - 3))
+            {
+                balance = '.' + balance;
+                z = z - 3;
+            }
+            balance = a.ToString()[i - 1] + balance;
+        }
+    }
+    else if (b < 6 && b > 3)
+    {
+        for (var i = b - 3; i > 0; i--)
+        {
+            balance = a.ToString()[i - 1] + balance;
+        }
+    }
+    else balance = a.ToString();
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account</th>
+            <th>Người mua</th>
+            <th>Giá tiền</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Title</td>
+            <td>@User.Identity.Name</td>
+            <td>@price VNĐ</td>
+            <td>@price VNĐ</td>
+        </tr>
+        <tr class="table-primary">
+            <td colspan="3">Số tiền tài khoản đang có</td>
+            <td>@balance VNĐ</td>
+        </tr>
+        <tr class="table-danger">
+            <td colspan="2">Phí giao dịch</td>
+            <td class="text-right">( 0% )</td>
+            <td>0 VNĐ</td>
+        </tr>
+        <tr class="table-success">
+            <td colspan="3">Tổng tiền</td>
+            <td>@price VNĐ</td>
+        </tr>
+        <tr class="table-light">
+            <td colspan="3">Số dư tài khoản sau khi giao dịch</td>
+            @{
+                var sodu = @Model.Balance - @Model.Price;
+                var lengsd = sodu.ToString().Length;
+                var history = "".ToString();
+                if (lengsd > 6)
+                {
+                    var z = lengsd - 3;
+                    for (var i = lengsd - 3; i > 0; i--)
+                    {
+                        if (i == (z - 3))
+                        {
+                            history = '.' + history;
+                            z = z - 3;
+                        }
+                        history = sodu.ToString()[i - 1] + history;
+                    }
+                }
+                else if (lengsd < 6 && lengsd > 3)
+                {
+                    for (var i = lengsd - 3; i > 0; i--)
+                    {
+                        history = sodu.ToString()[i - 1] + history;
+                    }
+                }
+                else history = sodu.ToString();
+            }
+            <td>@history VNĐ</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td>
+                <form action="Checkout" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="UserId" value="@Model.UserId" />
+                    <input type="hidden" name="Price" value="@Model.Price" />
+                    <input type="hidden" name="AccountId" value="@Model.AccountId" />
+                    <button type="submit" class="btn btn-success">Xác nhận Thanh Toán</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

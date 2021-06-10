@@ -1,0 +1,116 @@
+﻿@using shopAcc.ViewModels.Common;
+@model PagedResult<shopAcc.ViewModels.System.Transactions.TransactionVm>
+@{
+    ViewData["Title"] = "Lịch sử giao dịch";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="container-fluid">
+    <ul class="breadcrumb mt-3">
+        <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
+        <li class="active ml-1">Lịch sử giao dịch</li>
+    </ul>
+    <div class="card mb-12">
+        <div class="card-header">
+            <div class="row">
+                <div class="col col-md-12">
+                    <form asp-action="Trans" method="get">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="hidden" name="userName" value="@User.Identity.Name" />
+                                <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">Tìm</button>
+                                <button type="button" onclick="window.location.href = '/User/Trans?userName=@User.Identity.Name'" class="btn btn-dark">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã giao dịch
+                            </th>
+                            <th>
+                                Thời gian
+                            </th>
+                            <th>
+                                Số tiền
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+                            <th>
+                                Nội dung
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.TransactionDate
+                                </td>
+                                <td>
+                                    @{
+                                        var x = @item.Amount;
+                                        var y = x.ToString().Length;
+                                        var price = "".ToString();
+                                        if (y > 6)
+                                        {
+                                            var z = y - 3;
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                if (i == (z - 3))
+                                                {
+                                                    price = '.' + price;
+                                                    z = z - 3;
+                                                }
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else if (y < 6 && y > 3)
+                                        {
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else price = x.ToString();
+                                    }
+                                    @price
+                                </td>
+                                <td>
+                                    @item.Result
+                                </td>
+                                <td>
+                                    @item.Message
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

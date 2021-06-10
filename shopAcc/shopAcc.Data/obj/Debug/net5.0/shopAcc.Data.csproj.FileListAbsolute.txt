@@ -1,0 +1,15 @@
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.csprojAssemblyReference.cache
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.AssemblyInfoInputs.cache
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.AssemblyInfo.cs
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.csproj.CoreCompileInputs.cache
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\shopAcc.Data.deps.json
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\shopAcc.Data.runtimeconfig.json
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\shopAcc.Data.runtimeconfig.dev.json
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\shopAcc.Data.dll
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\ref\shopAcc.Data.dll
+D:\test\shopAcc\shopAcc.Data\bin\Debug\net5.0\shopAcc.Data.pdb
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.dll
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\ref\shopAcc.Data.dll
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.pdb
+D:\test\shopAcc\shopAcc.Data\obj\Debug\net5.0\shopAcc.Data.genruntimeconfig.cache

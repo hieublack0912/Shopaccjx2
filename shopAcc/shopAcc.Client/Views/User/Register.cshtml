@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Đăng Ký tài khoản";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Đăng Ký</h3></div>
+                            <div class="card-body">
+                                <form asp-action="Register">
+                                    <div asp-validation-summary="All" class="text-danger">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Họ</label>
+                                        <input class="form-control" name="FirstName" type="text" placeholder="Ví dụ: Vũ, Nguyễn, ..." />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Tên</label>
+                                        <input class="form-control" name="LastName" type="text" placeholder="Ví dụ: An" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Ngày sinh</label>
+                                        <input class="form-control" name="Dob" type="date" placeholder="mm/dd/yyyy" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Email</label>
+                                        <input class="form-control" name="Email" type="text" placeholder="Định dạng abc@xyz.def" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Số điện thoại</label>
+                                        <input class="form-control" name="PhoneNumber" type="number" placeholder="Ví dụ: 012345678" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Tên đăng nhập</label>
+                                        <input class="form-control" name="UserName" type="text" placeholder="Nhập tài khoản" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Mật khẩu</label>
+                                        <input class="form-control" name="Password" type="password" placeholder="Nhập mật khẩu" />
+                                        <span class="text-danger">*Lưu ý: mật khẩu phải bao gôm ít nhất 1 ký tự viết hoa, 1 ký tự thường và 1 ký tự đặc biệt</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Nhập lại mật khẩu</label>
+                                        <input class="form-control" name="Passwordre" type="password" placeholder="Nhập lại mật khẩu vừa nhập" />
+                                    </div>
+                                    <div class="auth-form__controls">
+                                        <button class="btn btn--primary btn-submit-create pr-3 pl-3">ĐĂNG KÝ</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small">Bạn đã có tài khoản? <a href="/User/Login">Đăng nhập</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

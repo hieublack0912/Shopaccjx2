@@ -1,0 +1,75 @@
+﻿@model AccountDetailViewModel
+@{
+    ViewData["Title"] = "Chi tiết account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+<ul class="breadcrumb mt-3">
+    <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
+    <li class="ml-1">@Model.Account.Categories[0]<span class="divider"> /</span></li>
+    <li class="active ml-1">Account #@Model.Account.Id</li>
+</ul>
+
+<div class="row">
+    <div class="col-sm-6">
+        <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
+            <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+        </a>
+        <div class="row">
+            <div class="col-4">
+                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
+                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
+                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
+                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h3>@Model.Account.Title</h3>
+        @{
+            var x = @Model.Account.Price;
+            var y = x.ToString().Length;
+            var price = "".ToString();
+        }
+        @if (y > 6)
+        {
+            var z = y - 3;
+            for (var i = y - 3; i > 0; i--)
+            {
+                if (i == (z - 3))
+                {
+                    price = '.' + price;
+                    z = z - 3;
+                }
+                price = x.ToString()[i - 1] + price;
+            }
+        }
+        else price = x.ToString();
+        <h2 class="text-danger">Giá: @price VNĐ</h2>
+        <p> Chuyển sinh: @Model.Account.Reincarnation</p>
+        <form action="../Order/Checkout" enctype="multipart/form-data" method="get">
+            <input type="hidden" name="accountId" value="@Model.Account.Id" />
+            <button class="btn btn-outline-success"> Mua Account</button>
+        </form>
+    </div>
+</div>
+<div class="note">
+    <h1>Chi tiết sản phẩm</h1>
+    @if (@Model.Account.Visional > 0)
+    {
+        <p>Cấp hóa cảnh: @Model.Account.Visional</p>
+    }
+    <p>@Model.Account.Description</p>
+    <p>Số lượt xem: @Model.Account.ViewCount</p>
+    <p>Ngày đăng bán: @Model.Account.DateCreated</p>
+</div>

@@ -1,0 +1,43 @@
+﻿@model shopAcc.ViewModels.Sales.OrderCreateRequest
+
+@{ ViewData["Title"] = "Tạo mới đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="container-fluid">
+    <h1 class="mt-4">Tạo mới đơn hàng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Tạo mới đơn hàng</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Order">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-8">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AccountId" class="control-label"></label>
+                        <input asp-for="AccountId" class="form-control" />
+                        <span asp-validation-for="AccountId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

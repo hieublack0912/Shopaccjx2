@@ -1,0 +1,12 @@
+D:\test\shopAcc\shopAcc.Untilities\bin\Debug\net5.0\shopAcc.Untilities.deps.json
+D:\test\shopAcc\shopAcc.Untilities\bin\Debug\net5.0\shopAcc.Untilities.dll
+D:\test\shopAcc\shopAcc.Untilities\bin\Debug\net5.0\ref\shopAcc.Untilities.dll
+D:\test\shopAcc\shopAcc.Untilities\bin\Debug\net5.0\shopAcc.Untilities.pdb
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.csprojAssemblyReference.cache
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.AssemblyInfoInputs.cache
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.AssemblyInfo.cs
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.csproj.CoreCompileInputs.cache
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.dll
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\ref\shopAcc.Untilities.dll
+D:\test\shopAcc\shopAcc.Untilities\obj\Debug\net5.0\shopAcc.Untilities.pdb

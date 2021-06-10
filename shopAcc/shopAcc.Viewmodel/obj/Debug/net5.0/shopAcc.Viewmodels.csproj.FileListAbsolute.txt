@@ -1,0 +1,15 @@
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.csprojAssemblyReference.cache
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.AssemblyInfoInputs.cache
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.AssemblyInfo.cs
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.csproj.CoreCompileInputs.cache
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\shopAcc.Viewmodels.deps.json
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\shopAcc.Viewmodels.dll
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\ref\shopAcc.Viewmodels.dll
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\shopAcc.Viewmodels.pdb
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.dll
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\ref\shopAcc.Viewmodels.dll
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.Viewmodels.pdb
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\shopAcc.Data.dll
+D:\test\shopAcc\shopAcc.Viewmodel\bin\Debug\net5.0\shopAcc.Data.pdb
+D:\test\shopAcc\shopAcc.Viewmodel\obj\Debug\net5.0\shopAcc.ViewModels.csproj.CopyComplete

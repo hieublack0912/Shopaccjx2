@@ -1,0 +1,42 @@
+﻿@model shopAcc.ViewModels.Catalog.AccountBalances.BalanceUpdateRequest;
+
+@{
+    ViewData["Title"] = "Cập nhật account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Cập nhật sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Balance">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-8">
+                <form asp-action="Update" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="UserId" />
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" disabled />
+                        <span asp-validation-for="BalanceUpdate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BalanceUpdate" class="control-label"></label>
+                        <input asp-for="BalanceUpdate" class="form-control" />
+                        <span asp-validation-for="BalanceUpdate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

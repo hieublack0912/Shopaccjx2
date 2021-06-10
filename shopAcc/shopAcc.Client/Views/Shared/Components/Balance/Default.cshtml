@@ -1,0 +1,33 @@
+﻿@model List<shopAcc.ViewModels.Catalog.AccountBalances.BalanceVm>
+
+@foreach (var item in Model)
+{
+    var a = @User.Identity.Name;
+    var b = @item.UserName;
+
+    if (a == b)
+    {
+        <a class="log_list-item text-light">
+            @{
+                var x = @item.Balance;
+                var y = x.ToString().Length;
+                var price = "".ToString();
+            }
+            @if (y > 6)
+            {
+                var z = y - 3;
+                for (var i = y - 3; i > 0; i--)
+                {
+                    if (i == (z - 3))
+                    {
+                        price = '.' + price;
+                        z = z - 3;
+                    }
+                    price = x.ToString()[i - 1] + price;
+                }
+            }
+            else price = x.ToString();
+            Số dư @price VNĐ
+        </a>
+    }
+}

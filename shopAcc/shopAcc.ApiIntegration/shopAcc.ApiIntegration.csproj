@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\shopAcc.Untilities\shopAcc.Utilities.csproj" />
+    <ProjectReference Include="..\shopAcc.Viewmodel\shopAcc.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

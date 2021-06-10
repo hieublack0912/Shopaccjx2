@@ -1,0 +1,89 @@
+﻿@model shopAcc.ViewModels.Catalog.Accounts.AccountCreateRequest
+
+@{ ViewData["Title"] = "Tạo mới account";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#txt_details'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Tạo mới Account game</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Tạo mới sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Account">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-8">
+                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" type="number" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Reincarnation" class="control-label"></label>
+                        <input asp-for="Reincarnation" type="number" class="form-control" />
+                        <span asp-validation-for="Reincarnation" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Visional" class="control-label"></label>
+                        <input asp-for="Visional" type="number" class="form-control" />
+                        <span asp-validation-for="Visional" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserNameAcc" class="control-label"></label>
+                        <input asp-for="UserNameAcc" class="form-control" />
+                        <span asp-validation-for="UserNameAcc" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PasswordAcc" class="control-label"></label>
+                        <input asp-for="PasswordAcc" type="password" class="form-control" />
+                        <span asp-validation-for="PasswordAcc" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ThumbnailImage" class="control-label"></label>
+                        <input asp-for="ThumbnailImage" type="file" class="form-control" />
+                        <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

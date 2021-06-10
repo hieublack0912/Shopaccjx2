@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "ChangePass";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h4 class="text-center font-weight-light">Đổi Mật khẩu</h4></div>
+                            <div class="card-body">
+                                <form asp-action="ChangePass" asp-controller="User" method="post" id="change">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                                    <div class="form-group">
+                                        <label class="small mb-1">Mật khẩu</label>
+                                        <input class="form-control" name="Password" type="password" placeholder="Enter password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Mật khẩu Mới</label>
+                                        <input class="form-control" name="PasswordNew" type="password" placeholder="Enter password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Nhập lại mật khẩu mới</label>
+                                        <input class="form-control" name="PasswordNewre" type="password" placeholder="Enter password" />
+                                    </div>
+                                    <div class="auth-form__controls">
+                                        <button type="submit" class="btn btn--primary btn-submit-login pr-3 pl-3 pt-1 pb-1">Đổi Mật khẩu</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

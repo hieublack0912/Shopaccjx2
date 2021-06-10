@@ -1,0 +1,126 @@
+﻿@model HomeViewModel
+@using shopAcc.ViewModels.Catalog.Accounts;
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewBag.Title = "Trang Chủ";
+}
+
+<div class="top__account">
+    <div class="top__account-title">
+        <h2 class="top__account-text">Account hot</h2>
+    </div>
+    <div class="row">
+        @{
+            List<List<AccountVm>> featuredAccounts = new List<List<AccountVm>>();
+            List<AccountVm> featuredPart = new List<AccountVm>();
+        }
+
+        @for (int index = 0; index < Model.FeaturedProducts.Count; index++)
+        {
+            featuredPart.Add(Model.FeaturedProducts[index]);
+            if (featuredPart.Count == 6 || Model.FeaturedProducts.Count < 6)
+            {
+                featuredAccounts.Add(featuredPart);
+                featuredPart = new List<AccountVm>();
+            }
+
+        }
+        @for (int index = 0; index < featuredAccounts.Count; index++)
+        {
+            @foreach (var item in featuredAccounts[index])
+            {
+                var url = $"/Accounts/{item.Id}";
+                var order = $"/Order/Checkout?accountId={item.Id}";
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card__account">
+                        <a href="@url">
+                            <img class="card__account-img" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="Ảnh Tài khoản">
+                        </a>
+                        <div class="card__account-title mt-2">
+                            <h5 class="card-title">@item.Title</h5>
+                        </div>
+                        <ul class="mb-0">
+                            <li class="card__account-list">Chuyển sinh: @item.Reincarnation</li>
+                            @{
+                                var x = @item.Price;
+                                var y = x.ToString().Length;
+                                var price = "".ToString();
+                            }
+                            @if (y > 6)
+                            {
+                                var z = y - 3;
+                                for (var i = y - 3; i > 0; i--)
+                                {
+                                    if (i == (z - 3))
+                                    {
+                                        price = '.' + price;
+                                        z = z - 3;
+                                    }
+                                    price = x.ToString()[i - 1] + price;
+                                }
+                            }
+                            else price = x.ToString();
+                            <li class="card__account-list text-danger">Giá: @price VNĐ</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="@url" class="card__account-link">Xem Chi tiết</a>
+                            <a href="@order" class="card__account-link ml-4">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="top__account">
+    <div class="all__account-title d-flex justify-content-between">
+        <h2 class="all__account-text">Account mới nhất</h2>
+        <a href="~/Account" class=""><h4 class="mb-0 mt-2 pl-2 pr-2 btn btn-outline-danger border-bottom-0">Tất cả account >></h4></a>
+    </div>
+    <div class="row">
+        @foreach (var item in Model.LatestProducts)
+        {
+            var url = $"/Accounts/{item.Id}";
+            var order = $"/Order/Checkout?accountId={item.Id}";
+            <div class="col-lg-4 col-sm-6">
+                <div class="card__account">
+                    <a href="@url">
+                        <img class="card__account-img" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="Ảnh Tài khoản">
+                    </a>
+                    <div class="card__account-title mt-2">
+                        <h5 class="card-title">@item.Title</h5>
+                    </div>
+                    <ul class="mb-0">
+                        <li class="card__account-list">Chuyển sinh: @item.Reincarnation</li>
+                        <li class="card__account-list">Hóa cảnh: @item.Visional</li>
+                        @{
+                            var x = @item.Price;
+                            var y = x.ToString().Length;
+                            var price = "".ToString();
+                        }
+                        @if (y > 6)
+                        {
+                            var z = y - 3;
+                            for (var i = y - 3; i > 0; i--)
+                            {
+                                if (i == (z - 3))
+                                {
+                                    price = '.' + price;
+                                    z = z - 3;
+                                }
+                                price = x.ToString()[i - 1] + price;
+                            }
+                        }
+                        else price = x.ToString();
+                        <li class="card__account-list text-danger">Giá: @price VNĐ</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="@url" class="card__account-link">Xem Chi tiết</a>
+                        <a href="@order" class="card__account-link ml-4">Mua ngay</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

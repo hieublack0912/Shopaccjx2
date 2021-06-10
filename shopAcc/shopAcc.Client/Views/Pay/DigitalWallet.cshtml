@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Nạp tiền bằng ví điện tử";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<ul class="breadcrumb mt-3">
+    <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
+    <li class="active ml-1">Nạp tiền ví điện tử</li>
+</ul>
+
+<h3 class="text-success">Để nạp tiền vào tài khoản của bạn trên hệ thống chúng tôi, vui lòng thực hiện theo hướng dẫn dưới đây:</h3>
+<ul>
+    <li><p class="text-pay"> - Bạn vui lòng chuyển khoản đến STK ngân hàng của chúng tôi với số tiền tương ứng số tiền cần nạp vào tài khoản của bạn trên hệ thống <a href="/">ShopAccJx2</a></p></li>
+    @if (@User.Identity.Name != null)
+    {
+        <li><p class="text-pay"> - Nội dung chuyển khoản ghi rõ: naptien <mark>@User.Identity.Name</mark> </p></li>
+    }
+    else
+    {
+        <li><p class="text-pay"> - Nội dung chuyển khoản ghi rõ: naptien <mark>(username)</mark> </p></li>
+    }
+    <li class="text-danger">
+        <h5> * Lưu ý: trường hợp chuyển sai nội dung, vui lòng gửi SMS về <strong>0358219991</strong> với nội dung giao dịch chuyển sai nội dung, mất 5% phí giao dịch và sẽ hoàn thành trong vòng 24h sau khi nhận được tin nhắn.</h5>
+    </li>
+</ul>
+
+<h4 class="text-success">THÔNG TIN TÀI KHOẢN NGÂN HÀNG:</h4>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Ví điện tử</th>
+            <th class="text-center">Số Điện Thoại, Chủ tài khoản</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Zalo Pay</td>
+            <td>
+                <ul class="mb-0">
+                    <li>Số Tài khoản: <p class="text-pay">035.821.9991</p></li>
+                    <li> Chủ tài khoản: <strong>VU TRUNG HIEU</strong></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Momo</td>
+            <td>
+                <ul class="mb-0">
+                    <li>Số Tài khoản: <p class="text-pay">035.821.9991</p></li>
+                    <li> Chủ tài khoản: <strong>VU TRUNG HIEU</strong></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>AirPay</td>
+            <td>
+                <ul class="mb-0">
+                    <li>Số Tài khoản: <p class="text-pay">035.821.9991</p></li>
+                    <li> Chủ tài khoản: <strong>VU TRUNG HIEU</strong></li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p class="text-pay">Sau khi nhận được thông tin chuyển khoản, chúng tôi sẽ tiến hành cộng tiền vào tài khoản của bạn nhanh nhất từ 5-10 phút, chậm nhất là 24h.</p>
