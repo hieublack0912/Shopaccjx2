@@ -90,7 +90,14 @@
                                     @Html.DisplayFor(modelItem => item.PhoneNumber)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
+                                    @if (item.Status == 0)
+                                    {
+                                        <p>Chưa sử lý</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Đã sử lý</p>
+                                    }
                                 </td>
                                 <td>
                                     @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |

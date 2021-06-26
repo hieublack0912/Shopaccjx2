@@ -5,6 +5,8 @@ using shopAcc.ViewModels.Utilities.Contacts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace shopAcc.Client.Controllers
@@ -48,6 +50,11 @@ namespace shopAcc.Client.Controllers
             var result = await _contactApiClient.CreateContact(request);
             if (result)
             {
+                MailMessage mess = new MailMessage("vth09121997@gmail.com", "hieublack0912@gmail.com", "Thông báo có người cần hỗ trợ", $"Một người dùng vừa gửi yêu cầu hỗ trợ");
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("vth09121997@gmail.com", "l0velyhd97");
+                client.Send(mess);
                 TempData["Message"] = "Hỗ trợ đã được gửi đến admin thành công. Admin sẽ phản hồi lại ngay khi có thể";
                 return RedirectToAction("Index");
             }

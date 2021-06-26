@@ -36,6 +36,7 @@ if (y < 992) {
     logo.css("display", "none");
 } else if (y >= 1200) {
     logo.css("left", "400px");
+    logo.css("display", "block");
 } else {
     var lgt = y / 2 - 200;
     logo.css("left", `${lgt}px`);

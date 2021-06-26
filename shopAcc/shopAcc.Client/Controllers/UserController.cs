@@ -76,7 +76,7 @@ namespace shopAcc.Client.Controllers
             };
             HttpContext.Session.SetString(SystemConstants.AppSettings.Token, result.ResultObj);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, authProperties);
-
+            TempData["Message"] = "Đăng nhập thành công";
             return RedirectToAction("Index", "Home");
         }
 
@@ -137,7 +137,7 @@ namespace shopAcc.Client.Controllers
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         userPrincipal,
                         authProperties);
-
+            TempData["Message"] = "Đăng ký thành công hệ thống đã tự động đăng nhập";
             return RedirectToAction("Index", "Home");
         }
 
@@ -146,6 +146,56 @@ namespace shopAcc.Client.Controllers
         {
             var result = await _userApiClient.GetByName(User.Identity.Name);
             return View(result.ResultObj);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var result = await _userApiClient.GetByName(User.Identity.Name);
+            if (result.IsSuccessed)
+            {
+                var user = result.ResultObj;
+                var updateRequest = new UserMemUpdateRequest()
+                {
+                    Dob = user.Dob,
+                    Email = user.Email,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return View(updateRequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string passWord, string firstName, string lastName, DateTime dob, string email, string phoneNumber)
+        {
+            if (passWord == null)
+            {
+                ModelState.AddModelError("", "Vui lòng nhập trường mật khẩu không khớp");
+                return View();
+            }
+            var user = await _userApiClient.GetByName(User.Identity.Name);
+            var request = new UserMemUpdateRequest()
+            {
+                Id = user.ResultObj.Id,
+                Password = passWord,
+                FirstName = firstName,
+                LastName = lastName,
+                Dob = dob,
+                Email = email,
+                PhoneNumber = phoneNumber
+            };
+            var result = await _userApiClient.UpdateMem(user.ResultObj.Id, request);
+            if (result.IsSuccessed)
+            {
+                TempData["Message"] = "Thay đổi thông tin thành công";
+                return RedirectToAction("Details");
+            }
+
+            ModelState.AddModelError("", result.Message);
+            return View();
         }
 
         public IActionResult ChangePass()
@@ -161,6 +211,11 @@ namespace shopAcc.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePass(string passWord, string passWordNew, string passWordNewre)
         {
+            if (passWordNew == null || passWordNewre == null || passWord == null)
+            {
+                ModelState.AddModelError("", "Vui lòng nhập đủ các trường");
+                return View();
+            }
             if (passWordNew != passWordNewre)
             {
                 ModelState.AddModelError("", "Mật khẩu nhập lại không khớp");

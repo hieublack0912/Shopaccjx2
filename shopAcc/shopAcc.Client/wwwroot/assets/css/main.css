@@ -9,7 +9,7 @@ header {
 
 .page_header-logo {
     background: url(/assets/img/logo.png) no-repeat;
-    display: block;
+    display: none;
     height: 100px;
     width: 256px;
     position: absolute;
@@ -192,6 +192,7 @@ a.pay_list-item:hover, a.log_list-item:hover {
 
 .img-slider {
     width: 100%;
+    height: 250px;
 }
 
 /*Top account*/

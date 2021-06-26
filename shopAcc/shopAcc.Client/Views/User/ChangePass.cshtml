@@ -4,13 +4,17 @@
 }
 
 <div id="layoutAuthentication">
+    <ul class="breadcrumb mt-3">
+        <li><a href="/">Home</a> <span class="divider"> / </span></li>
+        <li><a href="~/User/Details" class="ml-1">Thông tin người dùng</a> <span class="divider ml-1"> / </span></li>
+        <li class="active ml-1">Đổi mật khẩu</li>
+    </ul>
     <div id="layoutAuthentication_content">
         <main>
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h4 class="text-center font-weight-light">Đổi Mật khẩu</h4></div>
                             <div class="card-body">
                                 <form asp-action="ChangePass" asp-controller="User" method="post" id="change">
                                     <div asp-validation-summary="All" class="text-danger"></div>

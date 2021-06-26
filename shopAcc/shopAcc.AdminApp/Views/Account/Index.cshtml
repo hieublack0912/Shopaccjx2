@@ -72,44 +72,92 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Items)
+                        @for (var item = 0; item < Model.Items.Count(); item++)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @{
-                                        var x = @item.Price;
-                                        var y = x.ToString().Length;
-                                        var price = "".ToString();
-                                    }
-                                    @if (y > 6)
-                                    {
-                                        var z = y - 3;
-                                        for (var i = y - 3; i > 0; i--)
-                                        {
-                                            if (i == (z - 3))
-                                            {
-                                                price = '.' + price;
-                                                z = z - 3;
-                                            }
-                                            price = x.ToString()[i - 1] + price;
+                            var itemplus = item;
+                            if (itemplus == (Model.Items.Count() - 1))
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.Items[item].Id
+                                    </td>
+                                    <td>
+                                        @Model.Items[item].Title
+                                    </td>
+                                    <td>
+                                        @{
+                                            var x = @Model.Items[item].Price;
+                                            var y = x.ToString().Length;
+                                            var price = "".ToString();
                                         }
-                                    }
-                                    else price = x.ToString();
-                                    @price
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Xem", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }) |
-                                    @Html.ActionLink("Gán danh mục", "CategoryAssign", new { id = item.Id }) |
-                                </td>
-                            </tr>
+                                        @if (y > 6)
+                                        {
+                                            var z = y - 3;
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                if (i == (z - 3))
+                                                {
+                                                    price = '.' + price;
+                                                    z = z - 3;
+                                                }
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else price = x.ToString();
+                                        @price
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Xem", "Details", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Gán danh mục", "CategoryAssign", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Thêm ảnh", "AddImage", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Hình ảnh", "AllImage", new { id = Model.Items[item].Id }) |
+                                    </td>
+                                </tr>
+                            }
+                            else itemplus++;
+                            if (Model.Items[item].Id != Model.Items[itemplus].Id)
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.Items[item].Id
+                                    </td>
+                                    <td>
+                                        @Model.Items[item].Title
+                                    </td>
+                                    <td>
+                                        @{
+                                            var x = @Model.Items[item].Price;
+                                            var y = x.ToString().Length;
+                                            var price = "".ToString();
+                                        }
+                                        @if (y > 6)
+                                        {
+                                            var z = y - 3;
+                                            for (var i = y - 3; i > 0; i--)
+                                            {
+                                                if (i == (z - 3))
+                                                {
+                                                    price = '.' + price;
+                                                    z = z - 3;
+                                                }
+                                                price = x.ToString()[i - 1] + price;
+                                            }
+                                        }
+                                        else price = x.ToString();
+                                        @price
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Sửa", "Edit", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Xem", "Details", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Xóa", "Delete", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Gán danh mục", "CategoryAssign", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Thêm ảnh", "AddImage", new { id = Model.Items[item].Id }) |
+                                        @Html.ActionLink("Hình ảnh", "AllImage", new { id = Model.Items[item].Id }) |
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>

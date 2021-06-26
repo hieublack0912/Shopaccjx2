@@ -1,0 +1,63 @@
+﻿@model shopAcc.ViewModels.System.Users.UserMemUpdateRequest
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <ul class="breadcrumb mt-3">
+        <li><a href="/">Home</a> <span class="divider"> / </span></li>
+        <li><a href="~/User/Details" class="ml-1"> Thông tin người dùng</a> <span class="divider ml-1"> / </span></li>
+        <li class="active ml-1">Thay đổi thông tin</li>
+    </ul>
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-body">
+                                <form asp-action="Edit" asp-controller="User" method="post" id="change">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                                    <div class="form-group">
+                                        <label class="small mb-1">Mật khẩu hiện tại</label>
+                                        <input class="form-control" name="Password" type="password" placeholder="Enter password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Họ</label>
+                                        <input asp-for="FirstName" class="form-control" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Tên</label>
+                                        <input asp-for="LastName" class="form-control" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Ngày sinh</label>
+                                        <input asp-for="Dob" class="form-control" />
+                                        <span asp-validation-for="Dob" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Email</label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="small mb-1">Số điện thoại</label>
+                                        <input asp-for="PhoneNumber" type="number" class="form-control" />
+                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                    <div class="auth-form__controls">
+                                        <button type="submit" class="btn btn--primary btn-submit-login pr-3 pl-3 pt-1 pb-1">Lưu</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

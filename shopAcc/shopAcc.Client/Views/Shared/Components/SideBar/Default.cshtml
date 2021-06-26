@@ -15,19 +15,18 @@
                 var children = Model.Where(x => x.ParentId == parent.Id);
                 if (children.Any())
                 {
-                    <li class="list__sect-list__item">
-                        <div class="d-flex">
-                            <a class="d-flex">
-                                <i class="fas fa-angle-double-right pt-1 text-dark"></i>
-                                <h5 class="ml-2 text-dark">@parent.Name</h5>
-                            </a>
-                            <div class="ml-auto mr-4"><i class="fas fa-caret-square-down list__sect-icon" id="monphai-@parent.Id"></i></div>
-                        </div>
-                        <ul class="list__sect-list sects_show show_off">
+                    <li class="list__sect-list__item pt-1 pb-1" id="mp-@parent.Id">
+                        <a href="/categories/@parent.Id" class="d-flex">
+                            <i class="fas fa-angle-double-right pt-1 text-dark"></i>
+                            <h5 class="ml-2 text-dark">@parent.Name</h5>
+                        </a>
+                        <ul class="list__sect-list">
                             @foreach (var item in children)
                             {
                                 <li class="active">
-                                    <a href="/categories/@item.Id" class="text-secondary">@item.Name</a>
+                                    <a href="/categories/@item.Id" class="text-secondary pl-3 d-flex">
+                                        <h6 class="pl-2 text-secondary">@item.Name</h6>
+                                    </a>
                                 </li>
                             }
                         </ul>
@@ -36,7 +35,7 @@
                 }
                 else
                 {
-                    <li class="sects-list pt-1 pb-1" id="mp-@parent.Id">
+                    <li class="list__sect-list__item pt-1 pb-1" id="mp-@parent.Id">
                         <a href="/categories/@parent.Id" class="d-flex">
                             <i class="fas fa-angle-double-right pt-1 text-dark"></i>
                             <h5 class="ml-2 text-dark">@parent.Name</h5>

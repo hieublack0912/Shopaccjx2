@@ -14,15 +14,10 @@
             <div class="col-md-12">
                 <dl class="row">
                     <dt class="col-sm-2">
-                        Họ
+                        Họ Tên
                     </dt>
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.FirstName)
-                    </dd>
-                    <dt class="col-sm-2">
-                        Tên
-                    </dt>
-                    <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.LastName)
                     </dd>
                     <dt class="col-sm-2">
@@ -50,6 +45,7 @@
                         @Html.DisplayFor(model => model.Dob)
                     </dd>
                 </dl>
+                <a href="~/User/Edit" class="btn btn-info mr-3">Thay đổi thông tin</a>
                 <a href="~/User/changepass" class="btn btn--primary">Đổi mật khẩu</a>
             </div>
         </div>

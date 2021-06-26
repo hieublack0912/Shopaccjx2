@@ -20,6 +20,8 @@ namespace shopAcc.ViewModels.Sales
         public decimal Price { get; set; }
 
         public string UserName { get; set; }
+        public int AccountId { get; set; }
+
         public string AccountBuy { get; set; }
 
         public List<string> Accounts { get; set; } = new List<string>();

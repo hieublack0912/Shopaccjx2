@@ -30,7 +30,7 @@ namespace shopAcc.Application.Utilities.Contacts
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Message = request.Message,
-                Status = Status.InActive
+                Status = 0,
             };
             _context.Contacts.Add(contact);
             await _context.SaveChangesAsync();
@@ -101,10 +101,6 @@ namespace shopAcc.Application.Utilities.Contacts
         {
             var contact = await _context.Contacts.FindAsync(request.Id);
             if (contact == null) throw new shopException($"Cannot find a Contact with id: {request.Id}");
-
-            contact.Name = request.Name;
-            contact.Email = request.Email;
-            contact.PhoneNumber = request.PhoneNumber;
             contact.Status = request.Status;
 
             return await _context.SaveChangesAsync();

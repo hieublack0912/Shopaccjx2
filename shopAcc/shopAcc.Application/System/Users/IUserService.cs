@@ -20,6 +20,8 @@ namespace shopAcc.Application.System.Users
 
         Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
 
+        Task<ApiResult<bool>> UpdateMem(Guid id, UserMemUpdateRequest request);
+
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request);
 
         Task<ApiResult<UserVm>> GetById(Guid id);

@@ -21,7 +21,7 @@ namespace shopAcc.Application.Catalog.Accounts
 
         Task<bool> AddViewcount(int accountId);
 
-        Task<bool> NoSell(int accountId);
+        Task<bool> NoSell(int accountId, bool status);
 
         Task<PagedResult<AccountVm>> GetAllPaging(GetManageAccountPagingRequest request);
 

@@ -34,7 +34,7 @@
     }
     else price = x.ToString();
 
-    var a = @Model.Price;
+    var a = @Model.Balance;
     var b = a.ToString().Length;
     var balance = "".ToString();
     if (y > 6)
@@ -118,16 +118,16 @@
             }
             <td>@history VNĐ</td>
         </tr>
-        <tr>
-            <td colspan="3"></td>
-            <td>
-                <form action="Checkout" enctype="multipart/form-data" method="post">
-                    <input type="hidden" name="UserId" value="@Model.UserId" />
-                    <input type="hidden" name="Price" value="@Model.Price" />
-                    <input type="hidden" name="AccountId" value="@Model.AccountId" />
-                    <button type="submit" class="btn btn-success">Xác nhận Thanh Toán</button>
-                </form>
-            </td>
-        </tr>
     </tbody>
 </table>
+<div class="row">
+    <div class="col col-md-8"></div>
+    <div class="col fl-5">
+        <form action="Checkout" enctype="multipart/form-data" method="post">
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <input type="hidden" name="Price" value="@Model.Price" />
+            <input type="hidden" name="AccountId" value="@Model.AccountId" />
+            <button type="submit" class="btn btn-success">Xác nhận Thanh Toán</button>
+        </form>
+    </div>
+</div>

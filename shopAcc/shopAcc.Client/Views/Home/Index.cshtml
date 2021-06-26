@@ -5,6 +5,15 @@
     ViewBag.Title = "Trang Chủ";
 }
 
+@section Scripts{
+    <script>
+        var mess = '@Html.Raw(TempData["Message"])';
+        if (mess.length != 0) {
+            alert('@Html.Raw(TempData["Message"])');
+        }
+    </script>
+}
+
 <div class="top__account">
     <div class="top__account-title">
         <h2 class="top__account-text">Account hot</h2>

@@ -62,6 +62,7 @@ namespace shopAcc.Application.Sales
                     Price = x.a.Price,
                     OrderDate = x.o.OrderDate,
                     Status = x.o.Status,
+                    UserId = x.o.UserId
                 }).ToListAsync();
 
             //4. Select and projection
@@ -87,10 +88,12 @@ namespace shopAcc.Application.Sales
             {
                 Id = x.o.Id,
                 AccountBuy = x.a.Title,
+                AccountId = x.o.AccountId,
                 UserName = x.au.UserName,
                 Price = x.a.Price,
                 OrderDate = x.o.OrderDate,
                 Status = x.o.Status,
+                UserId = x.o.UserId
             }).FirstOrDefaultAsync();
         }
 

@@ -211,7 +211,7 @@ namespace shopAcc.Application.System.Users
             accBalance.Add(new AccountBalance()
             {
                 Balance = 0
-            });  
+            });
             user = new AppUser()
             {
                 Dob = request.Dob,
@@ -261,6 +261,31 @@ namespace shopAcc.Application.System.Users
 
         public async Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request)
         {
+            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
+            {
+                return new ApiErrorResult<bool>("Emai đã tồn tại");
+            }
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            user.Dob = request.Dob;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<bool>();
+            }
+            return new ApiErrorResult<bool>("Cập nhật không thành công");
+        }
+
+        public async Task<ApiResult<bool>> UpdateMem(Guid id, UserMemUpdateRequest request)
+        {
+            var tk = await _userManager.FindByIdAsync(id.ToString());
+            var checkpass = await _userManager.CheckPasswordAsync(tk, request.Password);
+            if (!checkpass)
+                return new ApiErrorResult<bool>("Mật khẩu hiện tại không chính xác");
             if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
             {
                 return new ApiErrorResult<bool>("Emai đã tồn tại");

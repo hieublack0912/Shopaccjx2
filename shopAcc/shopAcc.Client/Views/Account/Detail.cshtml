@@ -4,7 +4,81 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
-
+@section Scripts{
+    <script>
+        var count = $(".page-link").length;
+        var countimg = $(".img-full").length;
+        function check(i) {
+            var index = 0;
+            for (var a = 0; a < count; a++) {
+                var item = $(".page-item")[a];
+                for (var b = 0; b < item.classList.length; b++) {
+                    if (item.classList[b] == "disabled") {
+                        item.classList.remove("disabled");
+                        if (a == 0) {
+                            index = 1;
+                        } else if (a == (count - 2) || a == (count - 1)) {
+                            index = (count - 2);
+                        } else index = (a);
+                    }
+                }
+            }
+            for (var a = 0; a < countimg; a++) {
+                var item = $(".img-full")[a];
+                for (var b = 0; b < item.classList.length; b++) {
+                    if (item.classList[b] != "show_off") {
+                        item.classList.add("show_off");
+                    }
+                }
+            }
+            if (i == 0) {
+                if (index == 1) {
+                    $(".page-item")[0].classList.add("disabled");
+                    $(".page-item")[1].classList.add("disabled");
+                    $(".img-full")[0].classList.remove("show_off");
+                } else {
+                    index--;
+                    if (index == 1) {
+                        $(".page-item")[0].classList.add("disabled");
+                        $(".page-item")[1].classList.add("disabled");
+                        $(".img-full")[0].classList.remove("show_off");
+                    } else {
+                        $(".page-item")[index].classList.add("disabled");
+                        $(".img-full")[index - 1].classList.remove("show_off");
+                    }
+                }
+            } else if (i == 1) {
+                $(".page-item")[0].classList.add("disabled");
+                $(".page-item")[1].classList.add("disabled");
+                $(".img-full")[0].classList.remove("show_off");
+            } else if (i == count - 2) {
+                $(".page-item")[(count - 2)].classList.add("disabled");
+                $(".page-item")[(count - 1)].classList.add("disabled");
+                $(".img-full")[(countimg - 1)].classList.remove("show_off");
+            } else if (i == count - 1) {
+                if (index == (count - 2)) {
+                    $(".page-item")[(count - 1)].classList.add("disabled");
+                    $(".page-item")[(count - 2)].classList.add("disabled");
+                    $(".img-full")[(countimg - 1)].classList.remove("show_off");
+                } else {
+                    index++;
+                    if (index == (count - 2)) {
+                        $(".page-item")[(count - 1)].classList.add("disabled");
+                        $(".page-item")[(count - 2)].classList.add("disabled");
+                        $(".img-full")[(index - 1)].classList.remove("show_off");
+                    } else {
+                        $(".page-item")[index].classList.add("disabled");
+                        $(".img-full")[(index - 1)].classList.remove("show_off");
+                    }
+                }
+            } else {
+                $(".page-item")[i].classList.add("disabled");
+                $(".img-full")[i - 1].classList.remove("show_off");
+            }
+            console.log(index);
+        }
+    </script>
+}
 <ul class="breadcrumb mt-3">
     <li><a href="/"><localize>Home</localize></a> <span class="divider"> / </span></li>
     <li class="ml-1">@Model.Account.Categories[0]<span class="divider"> /</span></li>
@@ -13,25 +87,18 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
-            <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+        <a data-toggle="modal" data-target="#myModal" title="@Model.Account.Title">
+            <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" onclick="check(1)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
         </a>
         <div class="row">
-            <div class="col-4">
-                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
-                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
-                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" title="@Model.Account.Title">
-                    <img src="@(Configuration["BaseAddress"] + Model.Account.ThumbnailImage)" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
-                </a>
-            </div>
+            @for (var imageitem = 0; imageitem < Model.AccountImages.Count; imageitem++)
+            {
+                <div class="col-3">
+                    <a data-toggle="modal" data-target="#myModal" title="@Model.Account.Title">
+                        <img src="@(Configuration["BaseAddress"] + Model.AccountImages[imageitem].ImagePath)" onclick="check((@imageitem+1))" class="img-thumbnail img-detail-main" alt="@Model.Account.Title">
+                    </a>
+                </div>
+            }
         </div>
     </div>
     <div class="col-sm-6">
@@ -64,7 +131,7 @@
     </div>
 </div>
 <div class="note">
-    <h1>Chi tiết sản phẩm</h1>
+    <h1>Mô tả thông tin account</h1>
     @if (@Model.Account.Visional > 0)
     {
         <p>Cấp hóa cảnh: @Model.Account.Visional</p>
@@ -72,4 +139,71 @@
     <p>@Model.Account.Description</p>
     <p>Số lượt xem: @Model.Account.ViewCount</p>
     <p>Ngày đăng bán: @Model.Account.DateCreated</p>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade pr-0" id="myModal">
+    <div class="modal-dialog mw-100">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Ảnh full size</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body d-flex justify-content-center" id=("image-"+${i})>
+                @for (var i = 0; i < Model.AccountImages.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <img src="@(Configuration["BaseAddress"] + Model.AccountImages[i].ImagePath)" class="img-thumbnail img-full" alt="@Model.Account.Title">
+
+                    }
+                    else
+                    {
+                        <img src="@(Configuration["BaseAddress"] + Model.AccountImages[i].ImagePath)" class="img-thumbnail img-full show_off" alt="@Model.Account.Title">
+                    }
+
+                }
+            </div>
+
+            <ul class="pagination d-flex justify-content-center">
+                @if (Model.AccountImages.Count != 1)
+                {
+                    <li class="page-item disabled" onclick="check(0)"><a class="page-link">Previous</a></li>
+                }
+                else
+                {
+                    <li class="page-item disabled" onclick="check(0)"></li>
+                }
+                @for (var i = 1; i <= Model.AccountImages.Count; i++)
+                {
+                    if (Model.AccountImages.Count < 10)
+                    {
+                        if (i == 1)
+                        {
+                            <li class="page-item disabled" onclick="check(@i)"><a class="page-link">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item" onclick="check(@i)"><a class="page-link">@i</a></li>
+                        }
+                    }
+
+                }
+                @if (Model.AccountImages.Count != 1)
+                {
+
+                    <li class="page-item" onclick="check(@Model.AccountImages.Count+1)"><a class="page-link">Next</a></li>
+                }
+            </ul>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

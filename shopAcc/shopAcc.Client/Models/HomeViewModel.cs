@@ -9,8 +9,6 @@ namespace shopAcc.Client.Models
 {
     public class HomeViewModel
     {
-        public List<SlideVm> Slides { get; set; }
-
         public List<AccountVm> FeaturedProducts { get; set; }
 
         public List<AccountVm> LatestProducts { get; set; }

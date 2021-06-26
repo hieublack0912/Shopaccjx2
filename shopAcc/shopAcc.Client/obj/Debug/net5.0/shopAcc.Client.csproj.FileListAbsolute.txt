@@ -182,3 +182,5 @@ D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml
 D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\User\Paylist.cshtml.g.cs
 D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
 D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\User\ChangePass.cshtml.g.cs
+D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\User\Edit.cshtml.g.cs
+D:\test\shopAcc\shopAcc.Client\obj\Debug\net5.0\Razor\Views\Shared\Components\Slide\Default.cshtml.g.cs

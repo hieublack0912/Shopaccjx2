@@ -19,6 +19,6 @@ namespace shopAcc.ViewModels.Utilities.Contacts
 
         public string Message { get; set; }
 
-        public Status Status { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -7,6 +7,7 @@ namespace shopAcc.ViewModels.Catalog.AccountImages
 {
     public class AccountImageCreateRequest
     {
+        public int AccountId { get; set; }
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }

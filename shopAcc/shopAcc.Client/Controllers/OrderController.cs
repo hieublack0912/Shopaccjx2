@@ -48,6 +48,11 @@ namespace shopAcc.Client.Controllers
                 TempData["Message"] = "Vui lòng đăng nhập";
                 return RedirectToAction("Login", "User");
             }
+            if (User.Identity.Name == "admin")
+            {
+                TempData["Message"] = "admin không thể mua hàng";
+                return RedirectToAction("Index", "Home");
+            }
             var user = await _userApiClient.GetByName(User.Identity.Name);
             var balance = await _balanceApiClient.GetByIdUser(user.ResultObj.Id);
             var account = await _accountApiClient.GetById(accountId);
@@ -92,7 +97,7 @@ namespace shopAcc.Client.Controllers
             var result = await _orderApiClient.CreateOrder(request);
             if (result)
             {
-                var nosell = await _accountApiClient.NoSell(request.AccountId);
+                var nosell = await _accountApiClient.NoSell(request.AccountId, false);
                 var account = await _accountApiClient.GetById(request.AccountId);
                 var history = new TransactionCreateRequest()
                 {

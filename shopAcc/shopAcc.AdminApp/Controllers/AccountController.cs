@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using shopAcc.ApiIntegration;
 using shopAcc.Utilities.Constants;
+using shopAcc.ViewModels.Catalog.AccountImages;
 using shopAcc.ViewModels.Catalog.Accounts;
 using shopAcc.ViewModels.Common;
 
@@ -27,7 +28,7 @@ namespace shopAcc.AdminApp.Controllers
             _categoryApiClient = categoryApiClient;
         }
 
-        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 20)
         {
             var request = new GetManageAccountPagingRequest()
             {
@@ -103,6 +104,42 @@ namespace shopAcc.AdminApp.Controllers
             var roleAssignRequest = await GetCategoryAssignRequest(request.Id);
 
             return View(roleAssignRequest);
+        }
+
+        [HttpGet]
+        public IActionResult AddImage(int id)
+        {
+            var editVm = new AccountImageCreateRequest()
+            {
+                AccountId = id,
+            };
+            return View(editVm);
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AddImage([FromForm] AccountImageCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _accountApiClient.AddImage(request);
+
+            if (result)
+            {
+                TempData["result"] = "Thêm mới ảnh account thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Thêm ảnh account thất bại");
+            return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllImage(int id)
+        {
+            var image = await _accountApiClient.GetListImages(id);
+            return View(image);
         }
 
         [HttpGet]
@@ -182,6 +219,32 @@ namespace shopAcc.AdminApp.Controllers
             }
 
             ModelState.AddModelError("", "Xóa không thành công");
+            return View(request);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteImage(int id)
+        {
+            return View(new AccountDeleteRequest()
+            {
+                Id = id
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteImage(AccountDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _accountApiClient.DeleteImage(request.Id);
+            if (result)
+            {
+                TempData["result"] = "Xóa ảnh thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Xóa ảnh không thành công");
             return View(request);
         }
 

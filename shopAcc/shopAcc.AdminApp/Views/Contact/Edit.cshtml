@@ -1,0 +1,46 @@
+﻿@model shopAcc.ViewModels.Utilities.Contacts.ContactUpdateRequest
+
+@{
+    ViewData["Title"] = "Sửa trạng thái liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1 class="mt-4">Cập nhật sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Cập nhật trạng thái liên hệ</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="Contact">Về danh sách</a>
+        </div>
+
+        <div class="card-body">
+            <div class="col-md-8">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        @{
+                            var status = "".ToString();
+                            if (Model.Status == 0)
+                                status = "Chưa xử lý";
+                            else status = "Đã xử lý";
+
+                        }
+                        <p class="control-label">Trạng thái hiện tại: @status</p>
+                        <p>Muốn chuyển qua</p>
+                        <input type="radio" name="Status" value="0" id="status1" />
+                        <label for="status1">Chưa xử lý</label><br>
+                        <input type="radio" name="Status" value="1" id="status2" />
+                        <label for="status2">Đã xử lý</label><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

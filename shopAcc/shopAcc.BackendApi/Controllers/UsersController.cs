@@ -81,6 +81,21 @@ namespace shopAcc.BackendApi.Controllers
             return Ok(result);
         }
 
+        //PUT: http://localhost/api/users/id
+        [HttpPut("mem/{id}")]
+        public async Task<IActionResult> UpdateMem(Guid id, [FromBody] UserMemUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.UpdateMem(id, request);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         //PUT: http://localhost/api/users/change/id
         [HttpPut("change/{id}")]
         [AllowAnonymous]

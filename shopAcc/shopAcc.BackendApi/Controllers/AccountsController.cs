@@ -109,9 +109,9 @@ namespace shopAcc.BackendApi.Controllers
 
         [HttpPut("nosell/{accountId}")]
         [AllowAnonymous]
-        public async Task<IActionResult> NoSell(int accountId)
+        public async Task<IActionResult> NoSell(int accountId, bool status)
         {
-            var isSuccessful = await _accountService.NoSell(accountId);
+            var isSuccessful = await _accountService.NoSell(accountId, status);
             if (isSuccessful)
                 return Ok();
 
@@ -150,7 +150,7 @@ namespace shopAcc.BackendApi.Controllers
             return Ok();
         }
 
-        [HttpDelete("{accountId}/images/{imageId}")]
+        [HttpDelete("images/{imageId}")]
         [Authorize]
         public async Task<IActionResult> RemoveImage(int imageId)
         {
@@ -169,6 +169,15 @@ namespace shopAcc.BackendApi.Controllers
         public async Task<IActionResult> GetImageById(int accountId, int imageId)
         {
             var image = await _accountService.GetImageById(imageId);
+            if (image == null)
+                return BadRequest("Cannot find product");
+            return Ok(image);
+        }
+
+        [HttpGet("{accountId}/images/")]
+        public async Task<IActionResult> GetImage(int accountId)
+        {
+            var image = await _accountService.GetListImages(accountId);
             if (image == null)
                 return BadRequest("Cannot find product");
             return Ok(image);

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using shopAcc.Utilities.Constants;
+using shopAcc.ViewModels.Catalog.AccountImages;
 using shopAcc.ViewModels.Catalog.Accounts;
 using shopAcc.ViewModels.Common;
 using System;
@@ -71,6 +72,37 @@ namespace shopAcc.ApiIntegration
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<bool> AddImage(AccountImageCreateRequest request)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
+
+            var nameCreate = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultName);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
+            }
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Caption) ? "" : request.Caption.ToString()), "Caption");
+
+            var response = await client.PostAsync($"/api/accounts/" + request.AccountId + "/images", requestContent);
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<bool> UpdateAccount(AccountUpdateRequest request)
         {
             var sessions = _httpContextAccessor
@@ -123,15 +155,16 @@ namespace shopAcc.ApiIntegration
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> NoSell(int Id)
+        public async Task<bool> NoSell(int Id, bool status)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
 
             var requestContent = new MultipartFormDataContent();
             requestContent.Add(new StringContent(Id.ToString()), "Id");
+            requestContent.Add(new StringContent(status.ToString()), "Status");
 
-            var response = await client.PutAsync($"/api/accounts/nosell/" + Id, requestContent);
+            var response = await client.PutAsync($"/api/accounts/nosell/" + Id + "?Status=" + status, requestContent);
             return response.IsSuccessStatusCode;
         }
 
@@ -186,6 +219,19 @@ namespace shopAcc.ApiIntegration
         public async Task<bool> DeleteAccount(int id)
         {
             return await Delete($"/api/accounts/" + id);
+        }
+
+        public async Task<bool> DeleteImage(int id)
+        {
+            return await Delete($"/api/accounts/images/" + id);
+        }
+
+        public async Task<List<AccountImageViewModel>> GetListImages(int accountId)
+        {
+            var data = await GetListAsync<AccountImageViewModel>(
+                $"/api/accounts/{accountId}/images");
+
+            return data;
         }
     }
 }

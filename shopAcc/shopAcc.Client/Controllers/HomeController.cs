@@ -34,7 +34,6 @@ namespace shopAcc.Client.Controllers
         {
             var viewModel = new HomeViewModel
             {
-                Slides = await _slideApiClient.GetAll(),
                 FeaturedProducts = await _accountApiClient.GetFeaturedAccounts(SystemConstants.AccountSettings.NumberOfFeaturedAccounts),
                 LatestProducts = await _accountApiClient.GetLatestAccounts(SystemConstants.AccountSettings.NumberOfLatestAccounts),
             };

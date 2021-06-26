@@ -21,7 +21,7 @@ namespace shopAcc.Client.Controllers
             _categoryApiClient = categoryApiClient;
         }
 
-        public async Task<IActionResult> Index(string keyword, int? categoryId, int? valueRange, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword, int? categoryId, int? valueRange, int pageIndex = 1, int pageSize = 20)
         {
             var request = new GetManageAccountPagingRequest()
             {
@@ -60,10 +60,12 @@ namespace shopAcc.Client.Controllers
         {
             var a = await _accountApiClient.UpdateView(id);
             var account = await _accountApiClient.GetById(id);
+            var image = await _accountApiClient.GetListImages(id);
             return View(new AccountDetailViewModel()
             {
                 Account = account,
-                Category = await _categoryApiClient.GetById(id)
+                Category = await _categoryApiClient.GetById(id),
+                AccountImages = image
             });
         }
 

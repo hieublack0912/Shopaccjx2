@@ -17,6 +17,8 @@ namespace shopAcc.ApiIntegration
 
         Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest request);
 
+        Task<ApiResult<bool>> UpdateMem(Guid id, UserMemUpdateRequest request);
+
         Task<ApiResult<bool>> ChangePassWord(Guid id, ChangePassWordRequest request);
 
         Task<ApiResult<UserVm>> GetById(Guid id);

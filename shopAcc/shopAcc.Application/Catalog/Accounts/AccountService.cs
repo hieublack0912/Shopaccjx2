@@ -32,13 +32,17 @@ namespace shopAcc.Application.Catalog.Accounts
 
         public async Task<int> AddImage(int accountId, AccountImageCreateRequest request)
         {
+            var query = from ai in _context.AccountImages
+                        where ai.AccountId == accountId
+                        select new { ai };
+            var sortOrder = await query.CountAsync();
             var accountImage = new AccountImage()
             {
                 Caption = request.Caption,
                 DateCreated = DateTime.Now,
-                IsDefault = request.IsDefault,
+                IsDefault = false,
                 AccountId = accountId,
-                SortOrder = request.SortOrder
+                SortOrder = sortOrder + 1
             };
 
             if (request.ImageFile != null)
@@ -58,10 +62,15 @@ namespace shopAcc.Application.Catalog.Accounts
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<bool> NoSell(int accountId)
+        public async Task<bool> NoSell(int accountId, bool status)
         {
             var account = await _context.Accounts.FindAsync(accountId);
-            account.IsFeatured = false;
+            if (!status)
+            {
+                account.IsFeatured = false;
+            }
+            else
+                account.IsFeatured = true;
             return await _context.SaveChangesAsync() > 0;
         }
 
@@ -123,19 +132,18 @@ namespace shopAcc.Application.Catalog.Accounts
         public async Task<PagedResult<AccountVm>> GetAllPaging(GetManageAccountPagingRequest request)
         {
             //1. Select join
-            var query = from a in _context.Accounts
-                        join aic in _context.AccountInCategories on a.Id equals aic.AccountId into aaic
-                        from aic in aaic.DefaultIfEmpty()
-                        join c in _context.Categories on aic.CategoryId equals c.Id into picc
-                        from c in picc.DefaultIfEmpty()
-                        join ai in _context.AccountImages on a.Id equals ai.AccountId into aai
-                        from ai in aai.DefaultIfEmpty()
-                        where ai.IsDefault == true
-                        select new { a, aic, ai };
+            var query = (from a in _context.Accounts
+                         join aic in _context.AccountInCategories on a.Id equals aic.AccountId into aaic
+                         from aic in aaic.DefaultIfEmpty()
+                         join c in _context.Categories on aic.CategoryId equals c.Id into picc
+                         from c in picc.DefaultIfEmpty()
+                         join ai in _context.AccountImages on a.Id equals ai.AccountId into aai
+                         from ai in aai.DefaultIfEmpty()
+                         where ai.IsDefault == true
+                         select new { a, aic, ai });
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.a.Title.Contains(request.Keyword));
-
             if (request.CategoryId != null && request.CategoryId != 0)
             {
                 query = query.Where(p => p.aic.CategoryId == request.CategoryId);
@@ -401,14 +409,10 @@ namespace shopAcc.Application.Catalog.Accounts
         {
             //1. Select join
             var query = from a in _context.Accounts
-                        join aic in _context.AccountInCategories on a.Id equals aic.AccountId into aaic
-                        from pic in aaic.DefaultIfEmpty()
                         join ai in _context.AccountImages on a.Id equals ai.AccountId into aai
                         from ai in aai.DefaultIfEmpty()
-                        join c in _context.Categories on pic.CategoryId equals c.Id into picc
-                        from c in picc.DefaultIfEmpty()
                         where (ai == null || ai.IsDefault == true && a.IsFeatured == true)
-                        select new { a, pic, ai };
+                        select new { a, ai };
             var data = await query.OrderByDescending(x => x.a.ViewCount).Take(take)
                 .Select(x => new AccountVm()
                 {
@@ -432,14 +436,10 @@ namespace shopAcc.Application.Catalog.Accounts
         {
             //1. Select join
             var query = from a in _context.Accounts
-                        join aic in _context.AccountInCategories on a.Id equals aic.AccountId into aaic
-                        from pic in aaic.DefaultIfEmpty()
                         join ai in _context.AccountImages on a.Id equals ai.AccountId into aai
                         from ai in aai.DefaultIfEmpty()
-                        join c in _context.Categories on pic.CategoryId equals c.Id into picc
-                        from c in picc.DefaultIfEmpty()
                         where (ai == null || ai.IsDefault == true && a.IsFeatured == true)
-                        select new { a, pic, ai };
+                        select new { a, ai };
 
             var data = await query.OrderByDescending(x => x.a.DateCreated).Take(take)
                 .Select(x => new AccountVm()
